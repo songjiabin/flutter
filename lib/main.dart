@@ -33,19 +33,136 @@ Widget getWidget() {
 
 
   /**
-   * 动态的listView
+   * 6、动态的listView
    */
-  return new DynamicListViewApp();
+//  return new DynamicListViewApp(item: List.generate(100, (i) => 'item-->$i'));
+
+  /**
+   * 7、网格列表
+   */
+  return new GridViewApp();
 }
 
 
+/**
+ * 网格列表
+ */
+class GridViewApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return new MaterialApp(
+      title: '网格列表',
+      home: new Scaffold(
+          appBar: getAppBarWidget(name: '网格列表'),
+          body: getGridViewTwo()
+      ),
+    );
+  }
+
+
+  /**
+   * 通过GridView 获取GridView
+   */
+  getGridViewTwo() {
+    return new GridView(
+      /**
+       * 1、SliverGridDelegateWithMaxCrossAxisExtent 根据里面内容多大进行扩展的
+       */
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        //每一行显示多少列
+          crossAxisCount: 3,
+          //横轴的距离
+          crossAxisSpacing: 10,
+          //纵轴的距离
+          mainAxisSpacing: 10,
+          //横竖比例
+          childAspectRatio: 1
+      ),
+      children: getWidgetImageList(),
+      padding: new EdgeInsets.all(10),
+    );
+  }
+
+
+  /**
+   * 通过GridView.count 获取GridView
+   */
+  getGridViewOne() {
+    return new GridView.count(
+      //每一行显示多少列
+      crossAxisCount: 3,
+      //内边距
+      padding: const EdgeInsets.all(20.0),
+      //网格里面每个网格的间距
+      crossAxisSpacing: 10,
+
+      children: getWidgetTextList(),
+    );
+  }
+
+
+  /**
+   * 获取 GridView item Text
+   */
+  getWidgetTextList() {
+    List<Widget> listWidget = [];
+    for (int i = 0; i < 10; i++) {
+      listWidget.add(new Text('GridView-->$i'));
+    }
+    return listWidget;
+  }
+
+
+  /**
+   * 获取 GridView item Image
+   */
+  getWidgetImageList() {
+    List<Widget> listWidget = [];
+    for (int i = 0; i < 10; i++) {
+      listWidget.add(new Image.network(
+        'http://img5.mtime.cn/mg/2019/04/23/094417.78755084.jpg',
+        fit: BoxFit.cover,));
+    }
+    return listWidget;
+  }
+
+
+}
+
+
+/**
+ * 动态的listView
+ */
 class DynamicListViewApp extends StatelessWidget {
+
+  final List<String> item;
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return null;
+    return new MaterialApp(
+      title: '动态的ListView',
+      home: new Scaffold(
+        appBar: new AppBar(
+          title: new Text('动态的ListView'),
+        ),
+        body: ListView.builder(
+          //context 上下文、index 索引
+          itemBuilder: (context, index) {
+            return new ListTile(
+                title: new Text('${this.item[index]}'),
+                leading: new Icon(Icons.arrow_drop_down)
+            );
+          },
+          itemCount: this.item.length,
+        ),
+      ),
+    );
   }
+
+  //构造方法
+  DynamicListViewApp({Key key, @required this.item}) :super(key: key);
 }
 
 
@@ -286,7 +403,34 @@ class HelloWorldApp extends StatelessWidget {
 }
 
 
+/**
+ * 得到Appbar
+ */
+class getAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
 
 
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return new Container(
+      child: new AppBar(
+        title: new Text(this.name),
+      ),
+    );
+  }
 
+  final String name;
+
+  getAppBarWidget({Key key, @required this.name}) :super(key: key);
+
+  @override
+  // TODO: implement preferredSize
+  Size get preferredSize => getSize();
+
+
+  Size getSize() {
+    return new Size(100.0, 52.0);
+  }
+
+}
 
