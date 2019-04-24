@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_github/ScendWidget.dart';
+
 
 void main() {
   runApp(getWidget());
@@ -40,7 +42,352 @@ Widget getWidget() {
   /**
    * 7、网格列表
    */
-  return new GridViewApp();
+//  return new GridViewApp();
+
+  /**
+   *8、水平布局
+   */
+//  return new LevelLayoutWidget();
+
+  /**
+   * 9、垂直布局
+   */
+//  return new VerticalLayoutWidget();
+
+  /**
+   * 10、层叠布局
+   */
+//  return new CascadingLayoutWidget();
+
+  /**
+   * 11、定位布局 适应于三个以上控件的定位
+   */
+//  return new PositionLayoutWidget();
+
+  /**
+   * 12、卡片式布局
+   */
+//  return new cardLayoutWidget();
+
+  /**
+   *13、界面间的跳转
+   */
+//  return new FirstWidget();
+
+  /**
+   * 14、直接跳转到其他的.dart文件中去
+   */
+  return new MainApp();
+
+  /**
+   * 15
+   */
+}
+
+
+/**
+ * 界面间的跳转
+ * 点击跳转到新的界面
+ */
+class FirstWidget extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return new MaterialApp(
+        title: '界面间的跳转',
+        //注意 要在把 myHome()提取出来，不然报：Navigator operation requested with a context that does not include a Navigator的错误
+        home: myHome()
+    );
+  }
+}
+
+
+class myHome extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Scaffold(
+      appBar: getAppBarWidget(name: '第一个界面'),
+      body: new Center(
+        child: new RaisedButton(onPressed: () {
+          //处理跳转的逻辑
+          Navigator.push(context,
+              MaterialPageRoute(builder: (BuildContext context) {
+                return new SecondWidget();
+              }));
+        }, child: const Text('跳转到新的界面')),
+      ),
+    );
+  }
+
+}
+
+
+/**
+ * 界面的跳转
+ * 点击回到上一个界面
+ */
+class SecondWidget extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Scaffold(
+      appBar: getAppBarWidget(name: '第二个界面'),
+      body: new Center(
+        child: new RaisedButton(onPressed: () {
+          //处理返回上一个界面的逻辑
+          Navigator.pop(context);
+        }, child: const Text('返回上一个的界面')),
+      ),
+    );
+  }
+}
+
+
+/**
+ * 卡片式布局
+ */
+class cardLayoutWidget extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return new MaterialApp(
+      title: '卡片式布局',
+      home: new Center(
+        child:
+        new Scaffold(
+            appBar: getAppBarWidget(name: '卡片式布局'),
+            body:
+            new Padding(padding: new EdgeInsets.all(10.0),
+              child:
+              //卡片布局
+              new Card(
+                child: new Column(
+                  children: <Widget>[
+                    new ListTile(
+                        title: new Text('上海市汤臣一品', style: TextStyle(
+                            color: Colors.red, fontWeight: FontWeight.w500),),
+                        subtitle: const Text('电话：123456789'),
+                        leading: new Icon(
+                          Icons.account_box, color: Colors.lightBlue,)
+                    ),
+
+                    //分割线
+                    new Divider(color: Colors.brown,),
+                    new ListTile(
+                        title: new Text('上海市汤臣一品', style: TextStyle(
+                            color: Colors.red, fontWeight: FontWeight.w500),),
+                        subtitle: const Text('电话：123456789'),
+                        leading: new Icon(
+                          Icons.account_box, color: Colors.lightBlue,)
+                    ),
+
+                    //分割线
+                    new Divider(color: Colors.amber,),
+                    new ListTile(
+                        title: new Text('上海市汤臣一品', style: TextStyle(
+                            color: Colors.red, fontWeight: FontWeight.w500),),
+                        subtitle: const Text('电话：123456789'),
+                        leading: new Icon(
+                          Icons.account_box, color: Colors.lightBlue,)
+                    ),
+                    new Divider(color: Colors.deepPurpleAccent,),
+                  ],
+                ),
+
+              ),
+            )
+        ),),
+    );
+  }
+
+}
+
+
+/**
+ * Positioned控件的使用  绝对定位
+ */
+class PositionLayoutWidget extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return new MaterialApp(
+      title: '定位布局',
+      home: new Scaffold(
+        appBar: getAppBarWidget(name: '定位布局'),
+        body: new Center(
+          child: getPositionWidget(),
+        ),
+      ),
+    );
+  }
+
+
+  getPositionWidget() {
+    return
+      //可以层叠的布局
+      new Stack(
+        children: <Widget>[
+          new CircleAvatar(
+            backgroundImage: new NetworkImage(
+                'https://cdn.pixabay.com/photo/2019/04/18/22/14/bleeding-heart-4138262__340.jpg'),
+            radius: 200,
+          ),
+          new Positioned(child: new Text('数据1'), top: 20.0, left: 20.0,),
+          new Positioned(child: new Text('数据2'), top: 20.0, right: 20.0,),
+          new Positioned(child: new Text('数据3'), bottom: 20.0, left: 20,),
+          new Positioned(child: new Text('数据4'), bottom: 20.0, right: 20,)
+        ],
+      );
+  }
+
+
+}
+
+
+/**
+ * 层叠布局
+ */
+class CascadingLayoutWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return new MaterialApp(
+      title: '层叠布局',
+      home: new Scaffold(
+        appBar: getAppBarWidget(name: '层叠布局'),
+        body: getStackLayoutWidget(),
+      ),
+    );
+  }
+
+  /**
+   * 得到层叠布局
+   */
+  Widget getStackLayoutWidget() {
+    return
+      new Center(
+        child:
+        //层叠布局
+        new Stack(
+          children: <Widget>[
+            //圆角
+            new CircleAvatar(
+              backgroundImage: new NetworkImage(
+                  'https://cdn.pixabay.com/photo/2019/04/17/20/49/northern-gannet-4135324__340.jpg'),
+              radius: 200.0,
+            ),
+            new Container(
+              child: Text(
+                '我是数据哦',
+                style: TextStyle(color: Colors.red, fontSize: 20),),
+              decoration: BoxDecoration(color: Colors.brown),
+              padding: new EdgeInsets.all(1.0),
+//              color: Colors.brown,
+            )
+          ],
+          //对齐方式
+          //定位 根据下面的widget 在上面Widget的位置 Alignment(0.5, 0.5)
+          alignment: Alignment.topCenter,
+        ),
+      );
+  }
+
+}
+
+
+/**
+ * 垂直布局
+ */
+class VerticalLayoutWidget extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return new MaterialApp(
+      title: '垂直布局',
+      home: new Scaffold(
+        appBar: getAppBarWidget(name: '垂直布局'),
+        body:
+        new Center(
+          //所有里面的子元素都是横轴的
+          child: new Column(
+            //横轴对齐方式（）
+            crossAxisAlignment: CrossAxisAlignment.start,
+            //纵轴的对齐(主轴的对齐方式，因为是Column所以主轴就是竖向的)
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              new Expanded(
+                child: new Container(
+                  child: Text('Items1'),
+                  color: Colors.greenAccent,
+                  alignment: Alignment.center,
+                ),
+              ),
+              new Expanded(
+                  child: new Text('Item2---------------------')),
+              new Expanded(
+                  child: new Text('Item3'))
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+/**
+ * 水平布局
+ */
+class LevelLayoutWidget extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return new MaterialApp(
+      title: '水平布局',
+      home: new Scaffold(
+        appBar: getAppBarWidget(name: '水平布局'),
+        body:
+        //所有里面的子元素都是横轴的
+        new Row(
+          children: <Widget>[
+            /**
+             * Expanded 自适应的控件（会灵活的分配），正好填满整个屏幕
+             * 灵活布局
+             */
+            new Expanded(child: new RaisedButton(
+              onPressed: () {
+                print('按钮1');
+              },
+              color: Colors.deepPurpleAccent,
+              child: const Text('按钮1'),
+            )),
+            new Expanded(child: new RaisedButton(
+              onPressed: () {
+                print('按钮2');
+              },
+              color: Colors.greenAccent,
+              child: const Text('按钮2'),
+            )),
+            new Expanded(child: new RaisedButton(
+              onPressed: () {
+                print('按钮3');
+              },
+              color: Colors.blueGrey,
+              child: const Text('按钮3'),
+            )),
+          ],
+        ),
+      ),
+    );
+  }
+
 }
 
 
@@ -73,14 +420,14 @@ class GridViewApp extends StatelessWidget {
         //每一行显示多少列
           crossAxisCount: 3,
           //横轴的距离
-          crossAxisSpacing: 10,
+          crossAxisSpacing: 5,
           //纵轴的距离
-          mainAxisSpacing: 10,
+          mainAxisSpacing: 5,
           //横竖比例
           childAspectRatio: 1
       ),
       children: getWidgetImageList(),
-      padding: new EdgeInsets.all(10),
+      padding: new EdgeInsets.all(5),
     );
   }
 
@@ -119,10 +466,16 @@ class GridViewApp extends StatelessWidget {
    */
   getWidgetImageList() {
     List<Widget> listWidget = [];
-    for (int i = 0; i < 10; i++) {
-      listWidget.add(new Image.network(
-        'http://img5.mtime.cn/mg/2019/04/23/094417.78755084.jpg',
-        fit: BoxFit.cover,));
+    for (int i = 0; i < 50; i++) {
+      if (i % 2 == 0) {
+        listWidget.add(new Image.network(
+          'https://cdn.pixabay.com/photo/2019/04/21/00/30/tulip-4143182__340.jpg',
+          fit: BoxFit.cover,));
+      } else {
+        listWidget.add(new Image.network(
+          'https://cdn.pixabay.com/photo/2019/04/21/11/11/chess-board-flowers-4143937__340.jpg',
+          fit: BoxFit.cover,));
+      }
     }
     return listWidget;
   }
@@ -433,4 +786,7 @@ class getAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   }
 
 }
+
+
+
 
