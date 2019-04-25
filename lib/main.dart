@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_github/ScendWidget.dart';
-
+import 'package:flutter_github/bean/Product.dart';
+import 'package:flutter_github/ProductDetails.dart';
 
 void main() {
   runApp(getWidget());
@@ -77,11 +78,184 @@ Widget getWidget() {
   /**
    * 14、直接跳转到其他的.dart文件中去
    */
-  return new MainApp();
+//  return new MainApp();
 
   /**
-   * 15
+   * 15、导航参数的传递和接收
    */
+//  return new IntentWidget();
+
+  /**
+   * 16、界面跳转并返回
+   */
+//  return new returnDataWidget();
+
+  /**
+   * 17、本地图片
+   */
+  return new locationImage();
+
+  /**
+   * 18、打包
+   */
+}
+
+/**
+ * 本地图片加载
+ */
+class locationImage extends StatelessWidget {
+
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return new MaterialApp(
+      title: '本地图片',
+      home: new Scaffold(
+        appBar: getAppBarWidget(name: '本地图片'),
+        body: new Center(
+          child: new Image.asset('images/icon1.jpg'),
+        ),
+      ),
+    );
+  }
+}
+
+
+/**
+ * 跳转返回数据
+ */
+class returnDataWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+        title: '跳转返回数据',
+        home: new Scaffold(
+          appBar: getAppBarWidget(name: '跳转返回数据'),
+          body: new Center(
+            child: new RouteButton(),
+          ),
+        )
+    );
+  }
+}
+
+
+/**
+ * 自定义的路由控件
+ */
+class RouteButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return RaisedButton(onPressed: () {
+      return _navigatorToNextPage(context);
+    }, child: const Text('点击进新界面，让新界面返回数据'),);
+  }
+
+  /**
+   * 导航到新的界面
+   * async 异步方法
+   */
+  _navigatorToNextPage(BuildContext context) async {
+    // await 等待结果
+    final result = await Navigator.push(
+        context, new MaterialPageRoute(builder: (context) {
+      return new resultWidget();
+    }));
+    //将结果展示出来
+    Scaffold.of(context).showSnackBar(
+        new SnackBar(content: new Text('$result')));
+  }
+}
+
+
+/**
+ * 跳转到结果界面，该界面会返回数据
+ */
+class resultWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text('跳转到结果界面，该界面会返回数据'),
+      ),
+      body: new Center(
+        child: new Column(
+          children: <Widget>[
+            new RaisedButton(onPressed: () {
+              Navigator.pop(context, '返回结果1');
+            }, child: const Text('返回结果1'),),
+            new RaisedButton(onPressed: () {
+              Navigator.pop(context, '返回结果2');
+            }, child: const Text('返回结果2'),),
+            new RaisedButton(onPressed: () {
+              Navigator.pop(context, '返回结果3');
+            }, child: const Text('返回结果3'),),
+            new RaisedButton(onPressed: () {
+              Navigator.pop(context, '返回结果4');
+            }, child: const Text('返回结果4'),),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+/**
+ * 导航参数的传递和接收
+ */
+class IntentWidget extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return new MaterialApp(
+        title: '导航参数的传递和接收',
+        //商品列表
+        home: getProductList(productList: List.generate(100, (i) {
+          return new Product('商品$i', '这是第$i个商品');
+        }))
+    );
+  }
+
+
+}
+
+/**
+ * 得到商品列表
+ */
+class getProductList extends StatelessWidget {
+
+  final List<Product> productList;
+
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+        appBar: getAppBarWidget(name: '导航参数的传递和接收'),
+        body: new ListView.builder(
+          padding: new EdgeInsets.all(5.0),
+          itemCount: this.productList.length,
+          itemBuilder: (BuildContext context, int index) {
+            return ListTile(
+              title: Text('${productList[index].title}'),
+              onTap: () {
+                //点击事件 //导航 进入详情界面  将商品信息传递过去
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (BuildContext context) {
+                      return new ProductDetails(
+                          product: this.productList[index]);
+                    }));
+              },
+            );
+          },
+        )
+    );
+  }
+
+  //构造函数
+  getProductList({Key key, @required List<Product> this.productList})
+      :super(key: key);
 }
 
 
@@ -786,7 +960,3 @@ class getAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
   }
 
 }
-
-
-
-
