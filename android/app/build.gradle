@@ -45,8 +45,7 @@ android {
         versionName flutterVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-
-    buildTypes {
+    signingConfigs {
         release {
             keyAlias keystoreProperties['keyAlias']
             keyPassword keystoreProperties['keyPassword']
@@ -55,7 +54,13 @@ android {
         }
     }
 
-
+    buildTypes {
+        release {
+            // TODO: Add your own signing config for the release build.
+            //打包方式为正式   release
+            signingConfig signingConfigs.release
+        }
+    }
 }
 
 flutter {

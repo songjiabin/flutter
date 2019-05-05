@@ -2,12 +2,45 @@ import 'package:flutter/material.dart';
 import 'package:flutter_github/ScendWidget.dart';
 import 'package:flutter_github/bean/Product.dart';
 import 'package:flutter_github/ProductDetails.dart';
+import 'package:flutter_github/example_demo2/bottom_appbar.dart';
+import 'package:flutter_github/example_demo3/pages.dart';
+
 
 void main() {
   runApp(getWidget());
 }
 
+
 Widget getWidget() {
+
+  /**
+   * 小实例一：底部导航栏
+   */
+//  return new MaterialApp(
+//    title: '小实例',
+//    theme: ThemeData.light(),
+//    home: bottom_navigation_widget(),
+//  );
+
+  /**
+   * 小实例二：底部导航栏（特殊样式）+ 自定义的page界面
+   */
+//  return new MaterialApp(
+//    title: '小实例',
+//    theme: ThemeData.light(),
+//    home: bottomAppbar(),
+//  );
+
+  /**
+   * 小实例三：路由动画
+   */
+  return new MaterialApp(
+    title: '路由动画',
+    theme: ThemeData.light(),
+    home: bottomAppbar(),
+  );
+
+
   /**
    * 1、hello world
    */
@@ -16,7 +49,7 @@ Widget getWidget() {
   /**
    * 2、Container  类型快
    */
-//  return new ContainerApp();
+// return new ContainerApp();
 
   /**
    * 3、image 图片
@@ -96,7 +129,7 @@ Widget getWidget() {
   return new locationImage();
 
   /**
-   * 18、打包
+   * 18、打包 详见 https://jjmima.top/2019/04/26/Flutter%20%E6%89%93%E5%8C%85/#more
    */
 }
 
