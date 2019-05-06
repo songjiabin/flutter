@@ -29,11 +29,24 @@ Widget getWidget() {
   /**
    * 小实例三：路由动画
    */
+//  return new MaterialApp(
+//    title: '路由动画',
+//    theme: ThemeData(primarySwatch: Colors.yellow),
+//    home: pages.FirstWidget(),
+//  );
+
+
+  /**
+   * 小实例四：毛玻璃效果
+   */
+
   return new MaterialApp(
-    title: '路由动画',
-    theme: ThemeData(primarySwatch: Colors.yellow),
-    home: pages.FirstWidget(),
+    title: '毛玻璃效果',
+    theme: ThemeData(primarySwatch: Colors.deepOrange),
+    home:  pages.FirstWidget(),
   );
+
+
 
   /**
    * 1、hello world
