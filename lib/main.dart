@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_github/ProductDetails.dart';
 import 'package:flutter_github/bean/Product.dart';
 import 'package:flutter_github/example_demo3/pages.dart' as pages;
+import 'package:flutter_github/example_demo4/FrostedGlass.dart' as FrostedGlass;
+import 'package:flutter_github/example_demo5/KeepAliveDemo.dart' as keepAliveDemo;
+import 'package:flutter_github/example_demo6/SearchWidget.dart' as SearchWidget;
+
+
+
 
 void main() {
   runApp(getWidget());
@@ -40,11 +46,42 @@ Widget getWidget() {
    * 小实例四：毛玻璃效果
    */
 
+//  return new MaterialApp(
+//    title: '毛玻璃效果',
+//    theme: ThemeData(primarySwatch: Colors.deepOrange),
+//    home: FrostedGlass.FrostedGlassWidget(),
+//  );
+
+
+  /**
+   * 小实例五：保存页面状态
+   */
+//  return new MaterialApp(
+//    title: '保存页面状态',
+//    theme: ThemeData(primarySwatch: Colors.pink),
+//    home: keepAliveDemo.KeepAliveDemo(),
+//  );
+
+
+  /**
+   * 小实例六：搜索条
+   */
   return new MaterialApp(
-    title: '毛玻璃效果',
-    theme: ThemeData(primarySwatch: Colors.deepOrange),
-    home:  pages.FirstWidget(),
+    title: '搜索条',
+    theme: ThemeData(primarySwatch: Colors.red),
+    home: SearchWidget.SearchWidget(),
   );
+
+
+  /**
+   * 小实例七： Wrap 流失布局
+   */
+
+
+
+
+
+
 
 
 
@@ -195,7 +232,7 @@ class RouteButton extends StatelessWidget {
   _navigatorToNextPage(BuildContext context) async {
     // await 等待结果
     final result =
-        await Navigator.push(context, new MaterialPageRoute(builder: (context) {
+    await Navigator.push(context, new MaterialPageRoute(builder: (context) {
       return new resultWidget();
     }));
     //将结果展示出来
@@ -260,8 +297,8 @@ class IntentWidget extends StatelessWidget {
         //商品列表
         home: getProductList(
             productList: List.generate(100, (i) {
-          return new Product('商品$i', '这是第$i个商品');
-        })));
+              return new Product('商品$i', '这是第$i个商品');
+            })));
   }
 }
 
@@ -285,8 +322,9 @@ class getProductList extends StatelessWidget {
                 //点击事件 //导航 进入详情界面  将商品信息传递过去
                 Navigator.push(context,
                     MaterialPageRoute(builder: (BuildContext context) {
-                  return new ProductDetails(product: this.productList[index]);
-                }));
+                      return new ProductDetails(
+                          product: this.productList[index]);
+                    }));
               },
             );
           },
@@ -325,8 +363,8 @@ class myHome extends StatelessWidget {
               //处理跳转的逻辑
               Navigator.push(context,
                   MaterialPageRoute(builder: (BuildContext context) {
-                return new SecondWidget();
-              }));
+                    return new SecondWidget();
+                  }));
             },
             child: const Text('跳转到新的界面')),
       ),
@@ -371,8 +409,8 @@ class cardLayoutWidget extends StatelessWidget {
             body: new Padding(
               padding: new EdgeInsets.all(10.0),
               child:
-                  //卡片布局
-                  new Card(
+              //卡片布局
+              new Card(
                 child: new Column(
                   children: <Widget>[
                     new ListTile(
@@ -450,36 +488,36 @@ class PositionLayoutWidget extends StatelessWidget {
 
   getPositionWidget() {
     return
-        //可以层叠的布局
-        new Stack(
-      children: <Widget>[
-        new CircleAvatar(
-          backgroundImage: new NetworkImage(
-              'https://cdn.pixabay.com/photo/2019/04/18/22/14/bleeding-heart-4138262__340.jpg'),
-          radius: 200,
-        ),
-        new Positioned(
-          child: new Text('数据1'),
-          top: 20.0,
-          left: 20.0,
-        ),
-        new Positioned(
-          child: new Text('数据2'),
-          top: 20.0,
-          right: 20.0,
-        ),
-        new Positioned(
-          child: new Text('数据3'),
-          bottom: 20.0,
-          left: 20,
-        ),
-        new Positioned(
-          child: new Text('数据4'),
-          bottom: 20.0,
-          right: 20,
-        )
-      ],
-    );
+      //可以层叠的布局
+      new Stack(
+        children: <Widget>[
+          new CircleAvatar(
+            backgroundImage: new NetworkImage(
+                'https://cdn.pixabay.com/photo/2019/04/18/22/14/bleeding-heart-4138262__340.jpg'),
+            radius: 200,
+          ),
+          new Positioned(
+            child: new Text('数据1'),
+            top: 20.0,
+            left: 20.0,
+          ),
+          new Positioned(
+            child: new Text('数据2'),
+            top: 20.0,
+            right: 20.0,
+          ),
+          new Positioned(
+            child: new Text('数据3'),
+            bottom: 20.0,
+            left: 20,
+          ),
+          new Positioned(
+            child: new Text('数据4'),
+            bottom: 20.0,
+            right: 20,
+          )
+        ],
+      );
   }
 }
 
@@ -505,8 +543,8 @@ class CascadingLayoutWidget extends StatelessWidget {
   Widget getStackLayoutWidget() {
     return new Center(
       child:
-          //层叠布局
-          new Stack(
+      //层叠布局
+      new Stack(
         children: <Widget>[
           //圆角
           new CircleAvatar(
@@ -580,8 +618,8 @@ class LevelLayoutWidget extends StatelessWidget {
       home: new Scaffold(
         appBar: getAppBarWidget(name: '水平布局'),
         body:
-            //所有里面的子元素都是横轴的
-            new Row(
+        //所有里面的子元素都是横轴的
+        new Row(
           children: <Widget>[
             /**
              * Expanded 自适应的控件（会灵活的分配），正好填满整个屏幕
@@ -589,28 +627,28 @@ class LevelLayoutWidget extends StatelessWidget {
              */
             new Expanded(
                 child: new RaisedButton(
-              onPressed: () {
-                print('按钮1');
-              },
-              color: Colors.deepPurpleAccent,
-              child: const Text('按钮1'),
-            )),
+                  onPressed: () {
+                    print('按钮1');
+                  },
+                  color: Colors.deepPurpleAccent,
+                  child: const Text('按钮1'),
+                )),
             new Expanded(
                 child: new RaisedButton(
-              onPressed: () {
-                print('按钮2');
-              },
-              color: Colors.greenAccent,
-              child: const Text('按钮2'),
-            )),
+                  onPressed: () {
+                    print('按钮2');
+                  },
+                  color: Colors.greenAccent,
+                  child: const Text('按钮2'),
+                )),
             new Expanded(
                 child: new RaisedButton(
-              onPressed: () {
-                print('按钮3');
-              },
-              color: Colors.blueGrey,
-              child: const Text('按钮3'),
-            )),
+                  onPressed: () {
+                    print('按钮3');
+                  },
+                  color: Colors.blueGrey,
+                  child: const Text('按钮3'),
+                )),
           ],
         ),
       ),
@@ -641,7 +679,7 @@ class GridViewApp extends StatelessWidget {
        * 1、SliverGridDelegateWithMaxCrossAxisExtent 根据里面内容多大进行扩展的
        */
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          //每一行显示多少列
+        //每一行显示多少列
           crossAxisCount: 3,
           //横轴的距离
           crossAxisSpacing: 5,
@@ -750,32 +788,32 @@ class ListViewHorizontalApp extends StatelessWidget {
         ),
         body: new Center(
             child: new Container(
-          height: 200.0,
-          child: new ListView(
-            //设置为横向的listView
-            scrollDirection: Axis.horizontal,
-            children: <Widget>[
-              new Container(
-                width: 180.0,
-                color: Colors.red,
-                child: new Text('横向的ListView1'),
-                alignment: Alignment.center,
+              height: 200.0,
+              child: new ListView(
+                //设置为横向的listView
+                scrollDirection: Axis.horizontal,
+                children: <Widget>[
+                  new Container(
+                    width: 180.0,
+                    color: Colors.red,
+                    child: new Text('横向的ListView1'),
+                    alignment: Alignment.center,
+                  ),
+                  new Container(
+                    width: 180.0,
+                    color: Colors.blueGrey,
+                    child: new Text('横向的ListView2'),
+                    alignment: Alignment.center,
+                  ),
+                  new Container(
+                    width: 180.0,
+                    color: Colors.deepOrangeAccent,
+                    child: new Text('横向的ListView3'),
+                    alignment: Alignment.center,
+                  ),
+                ],
               ),
-              new Container(
-                width: 180.0,
-                color: Colors.blueGrey,
-                child: new Text('横向的ListView2'),
-                alignment: Alignment.center,
-              ),
-              new Container(
-                width: 180.0,
-                color: Colors.deepOrangeAccent,
-                child: new Text('横向的ListView3'),
-                alignment: Alignment.center,
-              ),
-            ],
-          ),
-        )),
+            )),
       ),
     );
   }
@@ -908,7 +946,7 @@ class ContainerApp extends StatelessWidget {
             margin: const EdgeInsets.fromLTRB(10.0, 20.0, 30.0, 40.0),
             //装饰
             decoration: new BoxDecoration(
-                //渐变颜色 注意和 color 不能并用
+              //渐变颜色 注意和 color 不能并用
                 gradient: new LinearGradient(
                     colors: [Colors.red, Colors.blue, Colors.yellow]),
                 //边框
