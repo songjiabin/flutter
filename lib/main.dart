@@ -5,15 +5,20 @@ import 'package:flutter_github/example_demo3/pages.dart' as pages;
 import 'package:flutter_github/example_demo4/FrostedGlass.dart' as FrostedGlass;
 import 'package:flutter_github/example_demo5/KeepAliveDemo.dart' as keepAliveDemo;
 import 'package:flutter_github/example_demo6/SearchWidget.dart' as SearchWidget;
-
-
-
+import 'package:flutter_github/example_demo7/WarpWidget.dart' as WarpWidget;
+import 'package:flutter_github/example_demo8/ExpansionTitleDemo.dart' as ExpansionTitleDemo;
+import 'package:flutter_github/example_demo9/ExpansionTitleList.dart' as ExpansionTitleListDemo;
+import 'package:flutter_github/example_demo10/CustomBesselWidget.dart' as CustomBesselWidget;
+import 'package:flutter_github/example_demo11/CustomBesselComplexWidget.dart' as CustomBesselComplexWidget;
 
 void main() {
-  runApp(getWidget());
+  runApp(getWidget_2());
 }
 
-Widget getWidget() {
+/**
+ * 小实例的Demo
+ */
+Widget getWidget_2() {
   /**
    * 小实例一：底部导航栏
    */
@@ -45,7 +50,6 @@ Widget getWidget() {
   /**
    * 小实例四：毛玻璃效果
    */
-
 //  return new MaterialApp(
 //    title: '毛玻璃效果',
 //    theme: ThemeData(primarySwatch: Colors.deepOrange),
@@ -66,23 +70,93 @@ Widget getWidget() {
   /**
    * 小实例六：搜索条
    */
-  return new MaterialApp(
-    title: '搜索条',
-    theme: ThemeData(primarySwatch: Colors.red),
-    home: SearchWidget.SearchWidget(),
-  );
+//  return new MaterialApp(
+//    title: '搜索条',
+//    theme: ThemeData(primarySwatch: Colors.red),
+//    home: SearchWidget.SearchWidget(),
+//  );
 
 
   /**
    * 小实例七： Wrap 流失布局
    */
+//  return new MaterialApp(
+//    title: 'Wrap 流失布局',
+//    theme: ThemeData.light(),
+//    home: WarpWidget.WrapWidget(),
+//  );
+
+
+  /**
+   * 小实例八：展开闭合案例  ExpansionTile
+   */
+//  return new MaterialApp(
+//    title: "展开闭合demo",
+//    theme: ThemeData.dark(),
+//    home: ExpansionTitleDemo.ExpansionTitleDemo(),
+//  );
+
+
+  /**
+   * 小实例九 ：可展开闭合的List
+   */
+//  return new MaterialApp(
+//    title: "可展开闭合的List",
+//    theme: ThemeData.dark(),
+//    //是否显示debug图标
+//    debugShowCheckedModeBanner: false,
+//    home: ExpansionTitleListDemo.ExpansionTitleList(),
+//  );
+
+
+  /**
+   * 小实例10：贝塞尔曲线
+   */
+//  return new MaterialApp(
+//    title: "贝塞尔曲线",
+//    theme: ThemeData(
+//        primarySwatch: Colors.blue
+//    ),
+//    //是否显示debug图标
+//    debugShowCheckedModeBanner: false,
+//    home: CustomBesselWidget.CustomBesselWidget(),
+//  );
+
+
+  /**
+   * 小实例11：复杂的贝塞尔曲线
+   */
+//  return new MaterialApp(
+//    title: "复杂的贝塞尔曲线",
+//    theme: ThemeData(
+//        primarySwatch: Colors.blue
+//    ),
+//    //是否显示debug图标
+//    debugShowCheckedModeBanner: true,
+//    home: CustomBesselComplexWidget.CustomBesselComplexWidget(),
+//  );
+
+
+  /**
+   * 小实例12：欢迎界面 闪屏界面
+   */
+  return new MaterialApp(
+    title: "欢迎界面 闪屏界面 ",
+    theme: ThemeData(
+        primarySwatch: Colors.blue
+    ),
+    //是否显示debug图标
+    debugShowCheckedModeBanner: true,
+    home: CustomBesselComplexWidget.CustomBesselComplexWidget(),
+  );
 
 
 
 
+}
 
 
-
+Widget getWidget_1() {
 
 
   /**

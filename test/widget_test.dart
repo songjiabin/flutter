@@ -28,6 +28,24 @@ void main() {
     expect(find.text('1'), findsOneWidget);
   });
 */
+
+   /**
+    * 初始化List
+    */
    List list = List<String>.generate(10, (j)=>'itme$j');
-   print(list);
+//   print(list);
+
+
+   /**
+    * 将list 循环并变成list
+    */
+   list.map((index){
+      print(index);
+   }).toList();
+
+
+
+
+
+
 }
