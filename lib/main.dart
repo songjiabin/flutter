@@ -10,6 +10,12 @@ import 'package:flutter_github/example_demo8/ExpansionTitleDemo.dart' as Expansi
 import 'package:flutter_github/example_demo9/ExpansionTitleList.dart' as ExpansionTitleListDemo;
 import 'package:flutter_github/example_demo10/CustomBesselWidget.dart' as CustomBesselWidget;
 import 'package:flutter_github/example_demo11/CustomBesselComplexWidget.dart' as CustomBesselComplexWidget;
+import 'package:flutter_github/example_demo12/SplashScreen.dart' as SplashScreenWidget;
+import 'package:flutter_github/example_demo13/RightBackWidget.dart' as RightBackWiget;
+import 'package:flutter_github/example_demo14/ToolTipsWidget.dart' as ToolTipsWidget;
+import 'package:flutter_github/example_demo15/DargTargetWidget.dart' as DargTargetWidget;
+import 'package:flutter_github/example_demo16/draggable_demo.dart';
+
 
 void main() {
   runApp(getWidget_2());
@@ -140,19 +146,67 @@ Widget getWidget_2() {
   /**
    * 小实例12：欢迎界面 闪屏界面
    */
+//  return new MaterialApp(
+//    title: "欢迎界面 闪屏界面 ",
+//    theme: ThemeData(
+//        primarySwatch: Colors.blue
+//    ),
+//    //是否显示debug图标
+//    debugShowCheckedModeBanner: true,
+//    home: SplashScreenWidget.SplashScreenWidget(),
+//  );
+
+
+  /**
+   * 小实例13：右滑返回上一页
+   */
+//  return new MaterialApp(
+//    title: "右滑返回上一页",
+//    theme: ThemeData(
+//        primarySwatch: Colors.blue
+//    ),
+//    //是否显示debug图标
+//    debugShowCheckedModeBanner: true,
+//    home: RightBackWiget.RightBackWidget(),
+//  );
+
+  /**
+   * 小实例14：轻量级提示
+   */
+
+//  return new MaterialApp(
+//    title: '轻量级提示',
+//    theme: ThemeData(
+//      primarySwatch: Colors.lightBlue
+//    ),
+//    home: ToolTipsWidget.ToolTipsWidget(),
+//  );
+
+
+  /**
+   * 小实例15：滑动拖动控件
+   */
   return new MaterialApp(
-    title: "欢迎界面 闪屏界面 ",
-    theme: ThemeData(
-        primarySwatch: Colors.blue
-    ),
-    //是否显示debug图标
-    debugShowCheckedModeBanner: true,
-    home: CustomBesselComplexWidget.CustomBesselComplexWidget(),
+      title: '滑动拖动控件',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+          primarySwatch: Colors.lightBlue
+      ),
+      home: DargTargetWidget.DargTargetWidget()
   );
 
 
-
-
+  /**
+   * 小实例16 技术胖 github上的项目
+   */
+  return new MaterialApp(
+      title: '技术胖 github上的项目',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+          primarySwatch: Colors.lightBlue
+      ),
+      home: DraggableDemo()
+  );
 }
 
 
