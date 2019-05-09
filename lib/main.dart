@@ -18,8 +18,19 @@ import 'package:flutter_github/example_demo16/draggable_demo.dart';
 
 
 void main() {
-  runApp(getWidget_2());
+  runApp(getWidget_1());
 }
+
+
+Widget getWidget_3() {
+  return new MaterialApp(
+      title: 'Demo',
+      home: new Scaffold(
+
+      )
+  );
+}
+
 
 /**
  * 小实例的Demo
@@ -209,7 +220,9 @@ Widget getWidget_2() {
   );
 }
 
-
+/**
+ * 基本控件
+ */
 Widget getWidget_1() {
 
 
@@ -296,12 +309,212 @@ Widget getWidget_1() {
   /**
    * 17、本地图片
    */
-  return new locationImage();
+//  return new locationImage();
 
   /**
    * 18、打包 详见 https://jjmima.top/2019/04/26/Flutter%20%E6%89%93%E5%8C%85/#more
    */
+
+  /**
+   * 19、常用的button
+   */
+
+//  return sampleButton();
+
+  /***
+   * 20. 文本输入框
+   */
+//  return MessageForm();
+
+
+  /**
+   * 21、显示弹框
+   */
+  return new MaterialApp(
+      home: DialogWidget()
+  );
 }
+
+/**
+ * 显示弹框
+ */
+class DialogWidget extends StatefulWidget {
+  @override
+  DialogWidgetState createState() => new DialogWidgetState();
+}
+
+class DialogWidgetState extends State<DialogWidget> {
+
+  var editControl = null;
+
+  @override
+  Widget build(BuildContext context) {
+    return
+      new Scaffold(
+          appBar: new AppBar(
+            title: new Text('显示弹框'),
+          ),
+          body: getRow()
+      );
+  }
+
+
+  Widget getRow() {
+    return Row(
+      children: <Widget>[
+        Expanded(
+          child: TextField(
+            controller: editControl,
+          ),
+        ),
+        RaisedButton(
+            child: Text("click"),
+            onPressed: () {
+              _pressButton(context);
+            }
+        )
+      ],
+    );
+  }
+
+
+  _pressButton(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (_) {
+          return AlertDialog(
+            //弹出来里面的内容
+            content: Text(editControl.text),
+            //弹框下面的按钮
+            actions: <Widget>[
+              FlatButton(
+                child: Text('OK'),
+                // 用户点击按钮后，关闭弹框
+                onPressed: () => Navigator.pop(context),
+              )
+            ],
+          );
+        }
+    );
+  }
+
+
+  @override
+  void initState() {
+    super.initState();
+    this.editControl = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    this.editControl.dispose();
+  }
+
+}
+
+
+/**
+ * 文本输入框
+ */
+class MessageForm extends StatefulWidget {
+  @override
+  State createState() => new MessageFormState();
+}
+
+
+class MessageFormState extends State<MessageForm> {
+
+  var editController;
+
+  @override
+  Widget build(BuildContext context) {
+    return new MaterialApp(
+      title: '',
+      home: new Scaffold(
+        appBar: new AppBar(
+          title: new Text('文本输入框'),
+        ),
+        body:
+        new Center(
+          child: new Column(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: editController,
+                ),
+              ),
+              Expanded(child: new RaisedButton(
+                  onPressed: () {
+                    print('${editController.text}');
+                  }))
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    //绑定资源
+    editController = new TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    //释放资源
+    editController.dispose();
+  }
+}
+
+
+/**
+ * 常用的button
+ */
+class sampleButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return
+      new MaterialApp(
+        title: 'title',
+        home: new Scaffold(
+          appBar: new AppBar(
+            title: new Text(''),
+          ),
+          body: getRaisedBtn(),
+        ),
+      );
+  }
+
+  /**
+   * 获取 FlatButton
+   */
+  Widget getFlatBtn() {
+    var flatBtn = FlatButton(
+      onPressed: () => print('FlatButton pressed'),
+      child: Text('BUTTON'),
+      color: Colors.green,
+    );
+    return flatBtn;
+  }
+
+  /**
+   * 获取 RaisedButton
+   */
+  Widget getRaisedBtn() {
+    var raisedButton = RaisedButton(
+      onPressed: () => print('RaisedButton pressed'),
+      child: Text('BUTTON'),
+      color: Colors.green,
+    );
+    return raisedButton;
+  }
+
+}
+
 
 /**
  * 本地图片加载
