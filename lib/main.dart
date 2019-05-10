@@ -15,19 +15,20 @@ import 'package:flutter_github/example_demo13/RightBackWidget.dart' as RightBack
 import 'package:flutter_github/example_demo14/ToolTipsWidget.dart' as ToolTipsWidget;
 import 'package:flutter_github/example_demo15/DargTargetWidget.dart' as DargTargetWidget;
 import 'package:flutter_github/example_demo16/draggable_demo.dart';
-
+import 'package:flutter_github/instance_demo/MySelfDemo.dart' as MyselfDemo;
 
 void main() {
-  runApp(getWidget_1());
+  runApp(getWidget_3());
 }
 
 
+/**
+ * 小实例demo
+ */
 Widget getWidget_3() {
   return new MaterialApp(
       title: 'Demo',
-      home: new Scaffold(
-
-      )
+      home: MyselfDemo.MySelfDemoWidget()
   );
 }
 
