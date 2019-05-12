@@ -5,11 +5,6 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
-
-import 'package:flutter_github/main.dart';
-
 void main() {
   /*testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
@@ -29,23 +24,29 @@ void main() {
   });
 */
 
-   /**
+  /**
     * 初始化List
     */
-   List list = List<String>.generate(10, (j)=>'itme$j');
+  List list = List<String>.generate(10, (j) => 'itme$j');
 //   print(list);
 
-
-   /**
+  /**
     * 将list 循环并变成list
     */
-   list.map((index){
-      print(index);
-   }).toList();
+  list.map((index) {
+    print(index);
+  }).toList();
 
+  List listDemo = List<demo>.generate(10, (j) {
+    return new demo('1111');
+  });
 
+  print(111);
+  print(listDemo);
+}
 
+class demo {
+  String name;
 
-
-
+  demo(this.name);
 }
