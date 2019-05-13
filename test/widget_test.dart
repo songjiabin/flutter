@@ -43,6 +43,24 @@ void main() {
 
   print(111);
   print(listDemo);
+
+
+
+
+
+  Map<String,String> map =new Map();
+
+  map['3']='4';
+  map['1']='1';
+  map['4']='5';
+
+
+  print(map);
+  print(map['3']);
+
+
+
+
 }
 
 class demo {

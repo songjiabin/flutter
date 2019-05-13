@@ -2,15 +2,41 @@ import 'package:flutter/material.dart';
 import 'package:flutter_github/ProductDetails.dart';
 import 'package:flutter_github/bean/Product.dart';
 import 'package:flutter_github/example_demo15/DargTargetWidget.dart'
-    as DargTargetWidget;
+as DargTargetWidget;
 import 'package:flutter_github/example_demo16/draggable_demo.dart';
 import 'package:flutter_github/instance_demo/MyListViewDemo.dart'
-    as MyListViewDemo;
+as MyListViewDemo;
 import 'package:flutter_github/instance_demo/MySelfDemo.dart' as MyselfDemo;
+import 'package:flutter_github/echo_demo/MessageListScreen.dart' as MessageListScreen;
+
+import 'package:flutter_github/drawer/DrawerWidget.dart' as DrawerWidget;
+import 'package:flutter_github/drawer/DrawerMainWidet.dart';
 
 void main() {
-  runApp(getWidget_4());
+  runApp(getDrawerWidget());
 }
+
+
+//侧滑菜单
+
+Widget getDrawerWidget() {
+  return new MaterialApp(
+      title: '侧滑菜单',
+      home: DrawerMainWidget()
+  );
+}
+
+
+/**
+ * 实现一个echo客户端
+ */
+Widget getWidget_5() {
+  return new MaterialApp(
+      title: 'demo',
+      home: MessageListScreen.MessageListScreen()
+  );
+}
+
 
 /**
  * 实现一个listView的小Demo
@@ -320,9 +346,7 @@ class DialogWidgetState extends State<DialogWidget> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        appBar: new AppBar(
-          title: new Text('显示弹框'),
-        ),
+
         body: getRow());
   }
 
@@ -391,9 +415,7 @@ class MessageFormState extends State<MessageForm> {
     return new MaterialApp(
       title: '',
       home: new Scaffold(
-        appBar: new AppBar(
-          title: new Text('文本输入框'),
-        ),
+
         body: new Center(
           child: new Column(
             children: [
@@ -436,9 +458,7 @@ class sampleButton extends StatelessWidget {
     return new MaterialApp(
       title: 'title',
       home: new Scaffold(
-        appBar: new AppBar(
-          title: new Text(''),
-        ),
+
         body: getRaisedBtn(),
       ),
     );
@@ -479,7 +499,7 @@ class locationImage extends StatelessWidget {
     return new MaterialApp(
       title: '本地图片',
       home: new Scaffold(
-        appBar: getAppBarWidget(name: '本地图片'),
+
         body: new Center(
           child: new Image.asset('images/icon1.jpg'),
         ),
@@ -497,7 +517,7 @@ class returnDataWidget extends StatelessWidget {
     return new MaterialApp(
         title: '跳转返回数据',
         home: new Scaffold(
-          appBar: getAppBarWidget(name: '跳转返回数据'),
+
           body: new Center(
             child: new RouteButton(),
           ),
@@ -526,7 +546,7 @@ class RouteButton extends StatelessWidget {
   _navigatorToNextPage(BuildContext context) async {
     // await 等待结果
     final result =
-        await Navigator.push(context, new MaterialPageRoute(builder: (context) {
+    await Navigator.push(context, new MaterialPageRoute(builder: (context) {
       return new resultWidget();
     }));
     //将结果展示出来
@@ -542,9 +562,7 @@ class resultWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('跳转到结果界面，该界面会返回数据'),
-      ),
+
       body: new Center(
         child: new Column(
           children: <Widget>[
@@ -591,13 +609,13 @@ class IntentWidget extends StatelessWidget {
         //商品列表
         home: getProductList(
             productList: List.generate(100, (i) {
-          return new Product('商品$i', '这是第$i个商品');
-        })));
+              return new Product('商品$i', '这是第$i个商品');
+            })));
   }
 }
 
 /**
- * 得到商品列表
+ * 得到商品列表  导航参数的传递和接收
  */
 class getProductList extends StatelessWidget {
   final List<Product> productList;
@@ -605,7 +623,6 @@ class getProductList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        appBar: getAppBarWidget(name: '导航参数的传递和接收'),
         body: new ListView.builder(
           padding: new EdgeInsets.all(5.0),
           itemCount: this.productList.length,
@@ -616,8 +633,9 @@ class getProductList extends StatelessWidget {
                 //点击事件 //导航 进入详情界面  将商品信息传递过去
                 Navigator.push(context,
                     MaterialPageRoute(builder: (BuildContext context) {
-                  return new ProductDetails(product: this.productList[index]);
-                }));
+                      return new ProductDetails(
+                          product: this.productList[index]);
+                    }));
               },
             );
           },
@@ -649,15 +667,15 @@ class myHome extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      appBar: getAppBarWidget(name: '第一个界面'),
+
       body: new Center(
         child: new RaisedButton(
             onPressed: () {
               //处理跳转的逻辑
               Navigator.push(context,
                   MaterialPageRoute(builder: (BuildContext context) {
-                return new SecondWidget();
-              }));
+                    return new SecondWidget();
+                  }));
             },
             child: const Text('跳转到新的界面')),
       ),
@@ -674,7 +692,7 @@ class SecondWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      appBar: getAppBarWidget(name: '第二个界面'),
+
       body: new Center(
         child: new RaisedButton(
             onPressed: () {
@@ -698,12 +716,12 @@ class cardLayoutWidget extends StatelessWidget {
       title: '卡片式布局',
       home: new Center(
         child: new Scaffold(
-            appBar: getAppBarWidget(name: '卡片式布局'),
+
             body: new Padding(
               padding: new EdgeInsets.all(10.0),
               child:
-                  //卡片布局
-                  new Card(
+              //卡片布局
+              new Card(
                 child: new Column(
                   children: <Widget>[
                     new ListTile(
@@ -771,7 +789,7 @@ class PositionLayoutWidget extends StatelessWidget {
     return new MaterialApp(
       title: '定位布局',
       home: new Scaffold(
-        appBar: getAppBarWidget(name: '定位布局'),
+
         body: new Center(
           child: getPositionWidget(),
         ),
@@ -781,36 +799,36 @@ class PositionLayoutWidget extends StatelessWidget {
 
   getPositionWidget() {
     return
-        //可以层叠的布局
-        new Stack(
-      children: <Widget>[
-        new CircleAvatar(
-          backgroundImage: new NetworkImage(
-              'https://cdn.pixabay.com/photo/2019/04/18/22/14/bleeding-heart-4138262__340.jpg'),
-          radius: 200,
-        ),
-        new Positioned(
-          child: new Text('数据1'),
-          top: 20.0,
-          left: 20.0,
-        ),
-        new Positioned(
-          child: new Text('数据2'),
-          top: 20.0,
-          right: 20.0,
-        ),
-        new Positioned(
-          child: new Text('数据3'),
-          bottom: 20.0,
-          left: 20,
-        ),
-        new Positioned(
-          child: new Text('数据4'),
-          bottom: 20.0,
-          right: 20,
-        )
-      ],
-    );
+      //可以层叠的布局
+      new Stack(
+        children: <Widget>[
+          new CircleAvatar(
+            backgroundImage: new NetworkImage(
+                'https://cdn.pixabay.com/photo/2019/04/18/22/14/bleeding-heart-4138262__340.jpg'),
+            radius: 200,
+          ),
+          new Positioned(
+            child: new Text('数据1'),
+            top: 20.0,
+            left: 20.0,
+          ),
+          new Positioned(
+            child: new Text('数据2'),
+            top: 20.0,
+            right: 20.0,
+          ),
+          new Positioned(
+            child: new Text('数据3'),
+            bottom: 20.0,
+            left: 20,
+          ),
+          new Positioned(
+            child: new Text('数据4'),
+            bottom: 20.0,
+            right: 20,
+          )
+        ],
+      );
   }
 }
 
@@ -824,7 +842,7 @@ class CascadingLayoutWidget extends StatelessWidget {
     return new MaterialApp(
       title: '层叠布局',
       home: new Scaffold(
-        appBar: getAppBarWidget(name: '层叠布局'),
+
         body: getStackLayoutWidget(),
       ),
     );
@@ -836,8 +854,8 @@ class CascadingLayoutWidget extends StatelessWidget {
   Widget getStackLayoutWidget() {
     return new Center(
       child:
-          //层叠布局
-          new Stack(
+      //层叠布局
+      new Stack(
         children: <Widget>[
           //圆角
           new CircleAvatar(
@@ -873,7 +891,7 @@ class VerticalLayoutWidget extends StatelessWidget {
     return new MaterialApp(
       title: '垂直布局',
       home: new Scaffold(
-        appBar: getAppBarWidget(name: '垂直布局'),
+
         body: new Center(
           //所有里面的子元素都是横轴的
           child: new Column(
@@ -909,10 +927,10 @@ class LevelLayoutWidget extends StatelessWidget {
     return new MaterialApp(
       title: '水平布局',
       home: new Scaffold(
-        appBar: getAppBarWidget(name: '水平布局'),
+
         body:
-            //所有里面的子元素都是横轴的
-            new Row(
+        //所有里面的子元素都是横轴的
+        new Row(
           children: <Widget>[
             /**
              * Expanded 自适应的控件（会灵活的分配），正好填满整个屏幕
@@ -920,28 +938,28 @@ class LevelLayoutWidget extends StatelessWidget {
              */
             new Expanded(
                 child: new RaisedButton(
-              onPressed: () {
-                print('按钮1');
-              },
-              color: Colors.deepPurpleAccent,
-              child: const Text('按钮1'),
-            )),
+                  onPressed: () {
+                    print('按钮1');
+                  },
+                  color: Colors.deepPurpleAccent,
+                  child: const Text('按钮1'),
+                )),
             new Expanded(
                 child: new RaisedButton(
-              onPressed: () {
-                print('按钮2');
-              },
-              color: Colors.greenAccent,
-              child: const Text('按钮2'),
-            )),
+                  onPressed: () {
+                    print('按钮2');
+                  },
+                  color: Colors.greenAccent,
+                  child: const Text('按钮2'),
+                )),
             new Expanded(
                 child: new RaisedButton(
-              onPressed: () {
-                print('按钮3');
-              },
-              color: Colors.blueGrey,
-              child: const Text('按钮3'),
-            )),
+                  onPressed: () {
+                    print('按钮3');
+                  },
+                  color: Colors.blueGrey,
+                  child: const Text('按钮3'),
+                )),
           ],
         ),
       ),
@@ -959,7 +977,7 @@ class GridViewApp extends StatelessWidget {
     return new MaterialApp(
       title: '网格列表',
       home: new Scaffold(
-          appBar: getAppBarWidget(name: '网格列表'), body: getGridViewTwo()),
+          body: getGridViewTwo()),
     );
   }
 
@@ -972,7 +990,7 @@ class GridViewApp extends StatelessWidget {
        * 1、SliverGridDelegateWithMaxCrossAxisExtent 根据里面内容多大进行扩展的
        */
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          //每一行显示多少列
+        //每一行显示多少列
           crossAxisCount: 3,
           //横轴的距离
           crossAxisSpacing: 5,
@@ -1046,9 +1064,7 @@ class DynamicListViewApp extends StatelessWidget {
     return new MaterialApp(
       title: '动态的ListView',
       home: new Scaffold(
-        appBar: new AppBar(
-          title: new Text('动态的ListView'),
-        ),
+
         body: ListView.builder(
           //context 上下文、index 索引
           itemBuilder: (context, index) {
@@ -1076,37 +1092,35 @@ class ListViewHorizontalApp extends StatelessWidget {
     return new MaterialApp(
       title: '横线ListView',
       home: new Scaffold(
-        appBar: new AppBar(
-          title: const Text('横线ListView'),
-        ),
+
         body: new Center(
             child: new Container(
-          height: 200.0,
-          child: new ListView(
-            //设置为横向的listView
-            scrollDirection: Axis.horizontal,
-            children: <Widget>[
-              new Container(
-                width: 180.0,
-                color: Colors.red,
-                child: new Text('横向的ListView1'),
-                alignment: Alignment.center,
+              height: 200.0,
+              child: new ListView(
+                //设置为横向的listView
+                scrollDirection: Axis.horizontal,
+                children: <Widget>[
+                  new Container(
+                    width: 180.0,
+                    color: Colors.red,
+                    child: new Text('横向的ListView1'),
+                    alignment: Alignment.center,
+                  ),
+                  new Container(
+                    width: 180.0,
+                    color: Colors.blueGrey,
+                    child: new Text('横向的ListView2'),
+                    alignment: Alignment.center,
+                  ),
+                  new Container(
+                    width: 180.0,
+                    color: Colors.deepOrangeAccent,
+                    child: new Text('横向的ListView3'),
+                    alignment: Alignment.center,
+                  ),
+                ],
               ),
-              new Container(
-                width: 180.0,
-                color: Colors.blueGrey,
-                child: new Text('横向的ListView2'),
-                alignment: Alignment.center,
-              ),
-              new Container(
-                width: 180.0,
-                color: Colors.deepOrangeAccent,
-                child: new Text('横向的ListView3'),
-                alignment: Alignment.center,
-              ),
-            ],
-          ),
-        )),
+            )),
       ),
     );
   }
@@ -1122,9 +1136,7 @@ class ListViewApp extends StatelessWidget {
     return new MaterialApp(
       title: 'ListView',
       home: new Scaffold(
-        appBar: new AppBar(
-          title: new Text('ListView'),
-        ),
+
         body: new ListView(children: getImageWidget()),
       ),
     );
@@ -1179,9 +1191,7 @@ class ImageApp extends StatelessWidget {
     return new MaterialApp(
       title: 'Title',
       home: new Scaffold(
-        appBar: new AppBar(
-          title: new Text('Image'),
-        ),
+
         body: new Center(
           child: new Container(
             child: new Image.network(
@@ -1221,9 +1231,7 @@ class ContainerApp extends StatelessWidget {
     return new MaterialApp(
       title: 'Title',
       home: new Scaffold(
-        appBar: new AppBar(
-          title: new Text("Title"),
-        ),
+
         body: new Center(
           child: new Container(
             child: new Text('基本密码', style: new TextStyle(fontSize: 40.0)),
@@ -1239,7 +1247,7 @@ class ContainerApp extends StatelessWidget {
             margin: const EdgeInsets.fromLTRB(10.0, 20.0, 30.0, 40.0),
             //装饰
             decoration: new BoxDecoration(
-                //渐变颜色 注意和 color 不能并用
+              //渐变颜色 注意和 color 不能并用
                 gradient: new LinearGradient(
                     colors: [Colors.red, Colors.blue, Colors.yellow]),
                 //边框
@@ -1262,9 +1270,7 @@ class HelloWorldApp extends StatelessWidget {
     return new MaterialApp(
       title: 'Flutter',
       home: new Scaffold(
-        appBar: new AppBar(
-          title: new Text('Flutter'),
-        ),
+
         body: new Center(
           child: new Text(
             'BodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBodyBody',
