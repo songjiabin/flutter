@@ -18,10 +18,10 @@ class EachWidgetWidgetState extends State<EachWidget> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new AppBar(
+     /* appBar: new AppBar(
         title: new Text(this.widget._title,
           textDirection: TextDirection.ltr,),
-      ),
+      ),*/
       body: new Center(
         child: new Text(this.widget._title,
           textDirection: TextDirection.ltr,),

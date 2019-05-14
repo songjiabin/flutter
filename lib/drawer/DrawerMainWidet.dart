@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_github/drawer/DrawerWidget.dart';
+
+
 
 /**
  * 导航界面
@@ -12,12 +15,12 @@ class DrawerMainWidget extends StatelessWidget {
       appBar: new AppBar(
         title: new Text('导航界面'),
       ),
-      body: getGridViewTwo(),
+      body: getGridViewTwo(context),
     );
   }
 
 
-  getGridViewTwo() {
+  getGridViewTwo(BuildContext context) {
     return new GridView(
       /**
        * 1、SliverGridDelegateWithMaxCrossAxisExtent 根据里面内容多大进行扩展的
@@ -26,32 +29,51 @@ class DrawerMainWidget extends StatelessWidget {
         //每一行显示多少列
           crossAxisCount: 2,
           //横轴的距离
-          crossAxisSpacing: 5,
+          crossAxisSpacing: 10,
           //纵轴的距离
-          mainAxisSpacing: 5,
+          mainAxisSpacing: 10,
           //横竖比例
           childAspectRatio: 1),
       children: <Widget>[
-        MyText('基本控件的使用练习'),
-        MyText('小实例学习'),
-        MyText('小项目')
+        MyText('基本控件的使用练习', () {
+          pushPage(context, DrawerWidget(ShowType.SampleWidget));
+        }),
+        MyText('小实例学习', () {
+          pushPage(context, DrawerWidget(ShowType.SampleDemo));
+        }),
+        MyText('小项目', () {
+          pushPage(context, DrawerWidget(ShowType.SampleProject));
+        })
       ],
-      padding: new EdgeInsets.all(5),
+      padding: new EdgeInsets.all(4),
     );
   }
+
+  /**
+   * 界面的跳转
+   */
+  void pushPage(BuildContext context, Widget widget) {
+    //处理跳转的逻辑
+    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+      return widget;
+    }));
+  }
+
+
 }
 
 class MyText extends StatelessWidget {
 
   final String text;
+  final onItemClickListeners _clickListeners;
 
   @override
   Widget build(BuildContext context) {
-    return new Container(
+    var con = new Container(
       alignment: Alignment.center,
       // 盒子样式
       decoration: new BoxDecoration(
-        color: Colors.blueAccent,
+        color: Colors.orange,
         //设置Border属性给容器添加边框
         border: new Border.all(
           //为边框添加颜色
@@ -61,17 +83,27 @@ class MyText extends StatelessWidget {
       ),
       child: new Text(this.text),
     );
+
+    InkWell inkWell = new InkWell(
+      child: con,
+      //点击事件
+      onTap: () {
+        _clickListeners();
+      },
+    );
+
+    return inkWell;
   }
 
-  MyText(this.text);
+
+  MyText(this.text, this._clickListeners);
 }
 
 
-
-
-
-
-
+/**
+ * 定义一个接口  回调方法
+ */
+typedef onItemClickListeners = void Function();
 
 
 

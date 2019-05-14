@@ -7,9 +7,7 @@ class MySelfDemoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('自己的一个小demo'),
-      ),
+
       body: new SingleChildScrollView(
         child: new Column(
           children: [

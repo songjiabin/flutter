@@ -12,6 +12,9 @@ import 'package:flutter_github/echo_demo/MessageListScreen.dart' as MessageListS
 import 'package:flutter_github/drawer/DrawerWidget.dart' as DrawerWidget;
 import 'package:flutter_github/drawer/DrawerMainWidet.dart';
 
+import 'package:flutter_github/example_demo/bottom_navigation_widget.dart';
+
+
 void main() {
   runApp(getDrawerWidget());
 }
@@ -46,7 +49,7 @@ Widget getWidget_4() {
 }
 
 /**
- * 小实例demo
+ * 静态界面
  */
 Widget getWidget_3() {
   return new MaterialApp(title: 'Demo', home: MyselfDemo.MySelfDemoWidget());

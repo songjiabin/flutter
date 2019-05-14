@@ -18,9 +18,7 @@ class MessageListScreenState extends State<MessageListScreen> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        appBar: new AppBar(
-          title: new Text('消息列表'),
-        ),
+
         floatingActionButton: FloatingActionButton(
           onPressed: onPress,
           child: Icon(Icons.add),

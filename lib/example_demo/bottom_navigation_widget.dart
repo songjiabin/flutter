@@ -25,7 +25,7 @@ class _bottom_navigation_widgetState extends State<bottom_navigation_widget> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: getAppBarWidget(name: '底部导航栏'),
+
       //底部导航
       bottomNavigationBar: new BottomNavigationBar(
         items: <BottomNavigationBarItem>[

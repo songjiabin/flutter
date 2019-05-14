@@ -23,9 +23,6 @@ class bottomAppbarState extends State<bottomAppbar> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('底部导航栏'),
-      ),
       body: new Scaffold(
         floatingActionButton: new FloatingActionButton(
             onPressed: () {
