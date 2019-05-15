@@ -20,6 +20,11 @@ import 'package:flutter_github/example_demo12/SplashScreen.dart';
 import 'package:flutter_github/example_demo13/RightBackWidget.dart';
 import 'package:flutter_github/example_demo14/ToolTipsWidget.dart';
 import 'package:flutter_github/example_demo15/DargTargetWidget.dart';
+import 'package:flutter_github/login/Login.dart';
+import 'package:flutter_github/chipWidget/ChipWidget.dart';
+import 'package:flutter_github/animation/AnimWidget.dart';
+import 'package:flutter_github/animation/OtherAnimWidget.dart';
+import 'package:flutter_github/animation/CustomAnimation.dart';
 
 
 /**
@@ -79,29 +84,33 @@ class DrawerWidgetState extends State<DrawerWidget> {
       this.map['常用的button'] = sampleButton();
       this.map['文本输入框'] = MessageForm();
       this.map['显示弹框'] = new MaterialApp(home: DialogWidget());
+      this.map['标签'] = ChipWidget();
+      this.map['线性动画'] = AnimWidget();
+      this.map['非线性动画'] = OtherAnimWidget();
+      this.map['自定义动画'] = CustomAnimation();
     } else if (this.widget.showType == ShowType.SampleDemo) {
       this.map['底部导航栏'] = bottom_navigation_widget();
       this.map['底部导航栏（特殊样式）+ 自定义的page界面'] = bottomAppbar();
       this.map['路由动画'] = FirstWidgets.FirstWidget();
-      this.map['毛玻璃效果']=FrostedGlassWidget();
-      this.map['保存页面状态']=KeepAliveDemo();
-      this.map['搜索条']=SearchWidget();
-      this.map['流式布局']=WrapWidget();
-      this.map['展开闭合案例  ExpansionTile']=ExpansionTitleDemo();
-      this.map['可展开闭合的List']=ExpansionTitleList();
-      this.map['贝塞尔曲线']=CustomBesselWidget();
-      this.map['复杂的贝塞尔曲线']=CustomBesselComplexWidget();
-      this.map['欢迎界面 闪屏界面']=SplashScreenWidget();
-      this.map['右滑返回上一页']=RightBackWidget();
-      this.map['轻量级提示']=ToolTipsWidget();
-      this.map['滑动拖动控件']=DargTargetWidget();
-
+      this.map['毛玻璃效果'] = FrostedGlassWidget();
+      this.map['保存页面状态'] = KeepAliveDemo();
+      this.map['搜索条'] = SearchWidget();
+      this.map['流式布局'] = WrapWidget();
+      this.map['展开闭合案例  ExpansionTile'] = ExpansionTitleDemo();
+      this.map['可展开闭合的List'] = ExpansionTitleList();
+      this.map['贝塞尔曲线'] = CustomBesselWidget();
+      this.map['复杂的贝塞尔曲线'] = CustomBesselComplexWidget();
+      this.map['欢迎界面 闪屏界面'] = SplashScreenWidget();
+      this.map['右滑返回上一页'] = RightBackWidget();
+      this.map['轻量级提示'] = ToolTipsWidget();
+      this.map['滑动拖动控件'] = DargTargetWidget();
 
 
       this.map['实现一个listView的小Demo'] = MyListViewDemo.MyListViewDemo();
       this.map['静态界面'] = MyselfDemo.MySelfDemoWidget();
     } else if (this.widget.showType == ShowType.SampleProject) {
       this.map['实现一个echo客户端'] = MessageListScreen.MessageListScreen();
+      this.map['登录'] = LoginWidget();
     }
 
 

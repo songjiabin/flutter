@@ -15,6 +15,9 @@ import 'package:flutter_github/drawer/DrawerMainWidet.dart';
 import 'package:flutter_github/example_demo/bottom_navigation_widget.dart';
 
 
+
+
+
 void main() {
   runApp(getDrawerWidget());
 }
@@ -552,7 +555,7 @@ class RouteButton extends StatelessWidget {
     await Navigator.push(context, new MaterialPageRoute(builder: (context) {
       return new resultWidget();
     }));
-    //将结果展示出来
+    //将结果展示出来 Toast
     Scaffold.of(context)
         .showSnackBar(new SnackBar(content: new Text('$result')));
   }
@@ -565,7 +568,6 @@ class resultWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-
       body: new Center(
         child: new Column(
           children: <Widget>[
