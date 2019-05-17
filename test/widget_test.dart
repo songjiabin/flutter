@@ -4,8 +4,12 @@
 // utility that Flutter provides. For example, you can send tap and scroll
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
-
+import 'dart:io';
 void main() {
+
+  go();
+  return;
+
   /*testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(getWidget());
@@ -61,7 +65,52 @@ void main() {
 
 
 
+  var li = [1, 2, 3, 4, 5];
+  li.forEach((i) => print((i) {
+      return i * i;
+  }(i)));
+
+
+ go();
+
+
+
+
+
+
 }
+
+
+void go(){
+  var li = [1, 2, 3, 4, 5];
+  li.forEach((i) => print((i) {
+    return i * i;
+  }(i)));
+
+
+  li.forEach((i)=>print((i){
+
+  }));
+
+
+
+  var file = File(r"C:\Users\songjiabin1\Desktop\新建文本文档.txt");
+  Future<String> re = file.readAsString();
+  re.then((result) {
+    print(result);
+  });
+  print("我是第几?");
+
+
+
+
+
+
+}
+
+
+
+
 
 class demo {
   String name;

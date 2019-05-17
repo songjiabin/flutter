@@ -25,7 +25,7 @@ import 'package:flutter_github/chipWidget/ChipWidget.dart';
 import 'package:flutter_github/animation/AnimWidget.dart';
 import 'package:flutter_github/animation/OtherAnimWidget.dart';
 import 'package:flutter_github/animation/CustomAnimation.dart';
-
+import 'package:flutter_github/io/IoDemo.dart';
 
 /**
  * 侧滑菜单
@@ -88,6 +88,11 @@ class DrawerWidgetState extends State<DrawerWidget> {
       this.map['线性动画'] = AnimWidget();
       this.map['非线性动画'] = OtherAnimWidget();
       this.map['自定义动画'] = CustomAnimation();
+      this.map['文件io操作']=IoWidget();
+
+
+
+
     } else if (this.widget.showType == ShowType.SampleDemo) {
       this.map['底部导航栏'] = bottom_navigation_widget();
       this.map['底部导航栏（特殊样式）+ 自定义的page界面'] = bottomAppbar();

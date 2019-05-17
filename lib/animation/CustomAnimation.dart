@@ -16,6 +16,7 @@ class CustomAnimationState extends State<CustomAnimation>
 
   AnimationController _controller;
   Animation _animation;
+  Animation color;
 
 
   @override
@@ -30,13 +31,18 @@ class CustomAnimationState extends State<CustomAnimation>
     // unitizedTop + 1 是了把 [-1, 1] 之间的值映射到 [0, 2]
     // (unitizedTop+1) * unit 后把单位化的值转回来
     final marginTop = (unitizedTop + 1) * unit + padding;
+
+
+    final color = this.color == null ? Colors.red : this.color.value;
+
     return Container(
       // 我们根据动画的进度设置圆点的位置
       margin: EdgeInsets.only(left: marginLeft, top: marginTop),
       // 画一个小红点
       child: Container(
         decoration: BoxDecoration(
-            color: Colors.red, borderRadius: BorderRadius.circular(7.5)),
+            color: color,
+            borderRadius: BorderRadius.circular(7.5)),
         width: 15.0,
         height: 15.0,
       ),
@@ -49,6 +55,7 @@ class CustomAnimationState extends State<CustomAnimation>
     // mediaQueryData。这里通过创建一个 Future 从而在 Dart 事件队列里插入
     // 一个事件，以达到延后执行的目的（类似于在 Android 里 post 一个 Runnable）
     // 关于 Dart 的事件队列，读者可以参考 https://webdev.dartlang.org/articles/performance/event-loop
+    //将此方法加入到队列中
     Future(_initState);
   }
 
@@ -82,6 +89,14 @@ class CustomAnimationState extends State<CustomAnimation>
         //当反向执行完成的时候  -》 正向执行
         _controller.forward();
       }
+    });
+
+
+    color = Tween(begin: Colors.red, end: Colors.green).animate(_controller);
+    color.addListener(() {
+      setState(() {
+
+      });
     });
 
     //正向执行
