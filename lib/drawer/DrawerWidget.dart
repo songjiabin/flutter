@@ -26,6 +26,12 @@ import 'package:flutter_github/animation/AnimWidget.dart';
 import 'package:flutter_github/animation/OtherAnimWidget.dart';
 import 'package:flutter_github/animation/CustomAnimation.dart';
 import 'package:flutter_github/io/IoDemo.dart';
+import 'package:flutter_github/json/JsonWidget.dart';
+import 'package:flutter_github/json/JsonToBeanWidget.dart';
+import 'package:flutter_github/http/HttpDemo.dart';
+import 'package:flutter_github/movie/MovieWidget.dart';
+import 'package:flutter_github/parsejson/ParseJsonWidget1.dart';
+
 
 /**
  * 侧滑菜单
@@ -89,6 +95,11 @@ class DrawerWidgetState extends State<DrawerWidget> {
       this.map['非线性动画'] = OtherAnimWidget();
       this.map['自定义动画'] = CustomAnimation();
       this.map['文件io操作']=IoWidget();
+      this.map['对象=>Json']=JsonWidget();
+      this.map['json=>对象']=JsonToBeanWidget();
+      this.map['解析json']=ParseJsonWidget();
+      this.map['http']=HttpDemoWidget();
+
 
 
 
@@ -116,6 +127,7 @@ class DrawerWidgetState extends State<DrawerWidget> {
     } else if (this.widget.showType == ShowType.SampleProject) {
       this.map['实现一个echo客户端'] = MessageListScreen.MessageListScreen();
       this.map['登录'] = LoginWidget();
+      this.map['movie']=MovieWidget();
     }
 
 
