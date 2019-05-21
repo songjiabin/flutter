@@ -48,7 +48,13 @@ class ParseJsonWidgetState extends State<ParseJsonWidget> {
 
 }
 
-
+/**
+ * {
+    "id":48734,
+    "name":"Pooja Bhaumik",
+    "score" : 45
+    }
+ */
 class Student {
   int studentId;
   String studentName;

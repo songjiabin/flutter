@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-
+/**
+ * 简单的http请求
+ */
 class HttpDemoWidget extends StatefulWidget {
   @override
   HttpDemoWidgetState createState() => new HttpDemoWidgetState();
