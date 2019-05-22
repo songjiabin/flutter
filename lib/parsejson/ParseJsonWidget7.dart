@@ -42,10 +42,12 @@ class ParseJsonWidgetState extends State<ParseJsonWidget7> {
    */
   loadProduct() async {
     loadAsset().then((String content) {
-      final jsonResponse = json.decode(content);
-      Movie movie = Movie.jsonToBean(jsonResponse);
-      var  ab = 1;
-
+      try {
+        final jsonResponse = json.decode(content);
+        Movie movie = Movie.jsonToBean(jsonResponse);
+      } catch (e) {
+        print(e);
+      }
     });
   }
 }
