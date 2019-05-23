@@ -5,28 +5,25 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 import 'dart:io';
-void main() {
 
+void main() {
   go();
   return;
-
-
-
-
 }
 
 
-void go(){
+void go() {
   var li = [1, 2, 3, 4, 5];
-  li.forEach((i) => print((i) {
-    return i * i;
-  }(i)));
+  li.forEach((i) =>
+      print((i) {
+        return i * i;
+      }(i)));
 
 
-  li.forEach((i)=>print((i){
+  li.forEach((i) =>
+      print((i) {
 
-  }));
-
+      }));
 
 
   var file = File(r"C:\Users\songjiabin1\Desktop\新建文本文档.txt");
@@ -37,32 +34,15 @@ void go(){
   print("我是第几?");
 
 
-
-
-  List abc =[];
+  List abc = [];
   abc.add('1');
   abc.add('2');
 
-  List newData =[];
-  abc.map((index){
-    newData.add(index);
+
+  abc.map((i) => i + "宋").forEach((f){
+    print(f);
   });
-
-//  newData= abc.map((i)=>i.toString()).toList();
-
-  print(newData);
-
-
-
-
-
-
-
-
 }
-
-
-
 
 
 class demo {

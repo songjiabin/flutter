@@ -27,6 +27,10 @@ void main() {
 Widget getDrawerWidget() {
   return new MaterialApp(
       title: '侧滑菜单',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        accentColor: const Color(0xFFFF5959),
+      ),
       home: DrawerMainWidget()
   );
 }

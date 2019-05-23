@@ -37,6 +37,10 @@ import 'package:flutter_github/parsejson/ParseJsonWidget4.dart';
 import 'package:flutter_github/parsejson/ParseJsonWidget5.dart';
 import 'package:flutter_github/parsejson/ParseJsonWidget6.dart';
 import 'package:flutter_github/parsejson/ParseJsonWidget7.dart';
+import 'package:flutter_github/parsejson/ParseJsonWidget8.dart';
+import 'package:flutter_github/github/movie_details_page.dart';
+import 'package:flutter_github/github/movie_api.dart';
+
 /**
  * 侧滑菜单
  */
@@ -105,9 +109,10 @@ class DrawerWidgetState extends State<DrawerWidget> {
       this.map['解析json2'] = ParseJsonWidget2();
       this.map['解析json3'] = ParseJsonWidget3();
       this.map['解析json4'] = ParseJsonWidget4();
-      this.map['解析json5'] =ParseJsonWidget5();
-      this.map['解析json6']=ParseJsonWidget6();
-      this.map['解析Movie=>json']=ParseJsonWidget7();
+      this.map['解析json5'] = ParseJsonWidget5();
+      this.map['解析json6'] = ParseJsonWidget6();
+      this.map['解析Movie=>json'] = ParseJsonWidget7();
+      this.map['解析Movie2=>json'] = ParseJsonWidget8();
       this.map['http'] = HttpDemoWidget();
     } else if (this.widget.showType == ShowType.SampleDemo) {
       this.map['底部导航栏'] = bottom_navigation_widget();
@@ -133,6 +138,7 @@ class DrawerWidgetState extends State<DrawerWidget> {
       this.map['实现一个echo客户端'] = MessageListScreen.MessageListScreen();
       this.map['登录'] = LoginWidget();
       this.map['movie'] = MovieWidget();
+      this.map['美丽的电影海报']=MovieDetailsPage(testMovie);
     }
 
 

@@ -25,12 +25,16 @@ class MovieWidgetState extends State<MovieWidget> {
         backgroundColor: Colors.green,
       );
     } else {
-      content = new Expanded(child: ListView.builder(
-        itemCount: listData.length,
-        itemBuilder: (context, index) {
-          return MovieItemWidget(subjects: this.listData[index], index: index);
-        },
-      ));
+      content =
+      new Container(
+        child: ListView.builder(
+          itemCount: listData.length,
+          //引入Item布局
+          itemBuilder: (context, index) {
+            return getItemWidget(index);
+          },
+        ),
+      );
     }
 
     return new Scaffold(
@@ -39,6 +43,12 @@ class MovieWidgetState extends State<MovieWidget> {
       ),
     );
   }
+
+
+  Widget getItemWidget(index) {
+    return new MovieItemWidget(subjects: this.listData[index], index: index);
+  }
+
 
   @override
   void initState() {
