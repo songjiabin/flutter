@@ -40,6 +40,10 @@ import 'package:flutter_github/parsejson/ParseJsonWidget7.dart';
 import 'package:flutter_github/parsejson/ParseJsonWidget8.dart';
 import 'package:flutter_github/github/movie_details_page.dart';
 import 'package:flutter_github/github/movie_api.dart';
+import 'package:flutter_github/github_demo/MoviePosterWidget.dart';
+import 'package:flutter_github/zhihu/ZhiHuWidget.dart';
+
+
 
 /**
  * 侧滑菜单
@@ -138,7 +142,9 @@ class DrawerWidgetState extends State<DrawerWidget> {
       this.map['实现一个echo客户端'] = MessageListScreen.MessageListScreen();
       this.map['登录'] = LoginWidget();
       this.map['movie'] = MovieWidget();
-      this.map['美丽的电影海报']=MovieDetailsPage(testMovie);
+      this.map['美丽的电影海报'] = MovieDetailsPage(testMovie);
+      this.map['美丽的电影海报Self'] = MoviePosterWidget();
+      this.map['请求知乎接口的一个小例子']=FutureBuilderPage();
     }
 
 

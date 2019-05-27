@@ -18,7 +18,7 @@ class MovieDetailHeader extends StatelessWidget {
         child: Chip(
           label: Text(category),
           labelStyle: textTheme.caption,
-          backgroundColor: Colors.black12,
+          backgroundColor: Colors.red,
         ),
       );
     }).toList();
