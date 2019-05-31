@@ -42,7 +42,10 @@ import 'package:flutter_github/github/movie_details_page.dart';
 import 'package:flutter_github/github/movie_api.dart';
 import 'package:flutter_github/github_demo/MoviePosterWidget.dart';
 import 'package:flutter_github/zhihu/ZhiHuWidget.dart';
-
+import 'package:flutter_github/zhihu/ZhiHuWidget2.dart';
+import 'package:flutter_github/map/map.dart';
+import 'package:flutter_github/map/KeyWidget.dart';
+import 'package:flutter_github/crossplatform/CrossPlatformWidget.dart';
 
 
 /**
@@ -118,6 +121,8 @@ class DrawerWidgetState extends State<DrawerWidget> {
       this.map['解析Movie=>json'] = ParseJsonWidget7();
       this.map['解析Movie2=>json'] = ParseJsonWidget8();
       this.map['http'] = HttpDemoWidget();
+      this.map['页面中map的使用'] = MapWidget();
+      this.map['使用widget 的 标识属性 key'] = KeyWidget();
     } else if (this.widget.showType == ShowType.SampleDemo) {
       this.map['底部导航栏'] = bottom_navigation_widget();
       this.map['底部导航栏（特殊样式）+ 自定义的page界面'] = bottomAppbar();
@@ -134,8 +139,6 @@ class DrawerWidgetState extends State<DrawerWidget> {
       this.map['右滑返回上一页'] = RightBackWidget();
       this.map['轻量级提示'] = ToolTipsWidget();
       this.map['滑动拖动控件'] = DargTargetWidget();
-
-
       this.map['实现一个listView的小Demo'] = MyListViewDemo.MyListViewDemo();
       this.map['静态界面'] = MyselfDemo.MySelfDemoWidget();
     } else if (this.widget.showType == ShowType.SampleProject) {
@@ -144,7 +147,11 @@ class DrawerWidgetState extends State<DrawerWidget> {
       this.map['movie'] = MovieWidget();
       this.map['美丽的电影海报'] = MovieDetailsPage(testMovie);
       this.map['美丽的电影海报Self'] = MoviePosterWidget();
-      this.map['请求知乎接口的一个小例子']=FutureBuilderPage();
+      this.map['请求知乎接口的一个小例子'] = FutureBuilderPage();
+      this.map['请求知乎接口的一个小例子2'] = ZhihuWidget2();
+    } else if (this.widget == ShowType.CrossPlatform) {
+      //跨平台
+      this.map['得到'] = CrossPlatforWidget();
     }
 
 
@@ -195,7 +202,9 @@ enum ShowType {
   //小Demo
   SampleDemo,
   //小实例
-  SampleProject
+  SampleProject,
+  //跨平台
+  CrossPlatform
 }
 
 

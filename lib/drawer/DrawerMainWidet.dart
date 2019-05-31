@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_github/drawer/DrawerWidget.dart';
-
+import 'dart:math';
 
 
 /**
@@ -43,6 +43,9 @@ class DrawerMainWidget extends StatelessWidget {
         }),
         MyText('小项目', () {
           pushPage(context, DrawerWidget(ShowType.SampleProject));
+        }),
+        MyText('跨平台', () {
+          pushPage(context, DrawerWidget(ShowType.CrossPlatform));
         })
       ],
       padding: new EdgeInsets.all(4),
@@ -73,11 +76,15 @@ class MyText extends StatelessWidget {
       alignment: Alignment.center,
       // 盒子样式
       decoration: new BoxDecoration(
-        color: Colors.orange,
+        color: Color.fromARGB(
+            255, Random().nextInt(256) + 0, Random().nextInt(256) + 0,
+            Random().nextInt(256) + 0),
         //设置Border属性给容器添加边框
         border: new Border.all(
           //为边框添加颜色
-          color: Colors.orange,
+          color: Color.fromARGB(
+              255, Random().nextInt(256) + 0, Random().nextInt(256) + 0,
+              Random().nextInt(256) + 0),
           width: 1.0, //边框宽度
         ),
       ),
@@ -97,6 +104,14 @@ class MyText extends StatelessWidget {
 
 
   MyText(this.text, this._clickListeners);
+
+  //得到随机颜色
+  Color randomColor() {
+    return Color.fromARGB(
+        255, Random().nextInt(256) + 0, Random().nextInt(256) + 0,
+        Random().nextInt(256) + 0);
+  }
+
 }
 
 
