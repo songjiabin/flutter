@@ -45,8 +45,8 @@ import 'package:flutter_github/zhihu/ZhiHuWidget.dart';
 import 'package:flutter_github/zhihu/ZhiHuWidget2.dart';
 import 'package:flutter_github/map/map.dart';
 import 'package:flutter_github/map/KeyWidget.dart';
-import 'package:flutter_github/crossplatform/CrossPlatformWidget.dart';
-
+import 'package:flutter_github/crossplatform/FlutterGetDataForAndroid.dart';
+import 'package:flutter_github/crossplatform/AndroidGetDataForFlutter.dart';
 
 /**
  * 侧滑菜单
@@ -149,9 +149,11 @@ class DrawerWidgetState extends State<DrawerWidget> {
       this.map['美丽的电影海报Self'] = MoviePosterWidget();
       this.map['请求知乎接口的一个小例子'] = FutureBuilderPage();
       this.map['请求知乎接口的一个小例子2'] = ZhihuWidget2();
-    } else if (this.widget == ShowType.CrossPlatform) {
+
+    } else if (this.widget.showType == ShowType.CrossPlatform) {
       //跨平台
-      this.map['得到'] = CrossPlatforWidget();
+      this.map['flutter调用android方法得到电量信息'] = CrossPlatforWidget();
+      this.map['android调用flutter方法得到数据']=AndroidGetDataForFlutter();
     }
 
 
@@ -168,7 +170,6 @@ class DrawerWidgetState extends State<DrawerWidget> {
           title: Text(title),
         ),
         drawer: new Drawer(
-
           //创建不同类型的ListView
           child: ListView.separated(
               itemBuilder: (BuildContext context, int index) {
