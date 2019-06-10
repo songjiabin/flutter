@@ -6,47 +6,34 @@
 // tree, read text, and verify that the values of widget properties are correct.
 import 'dart:io';
 
+class demo{
+
+  //构造方法
+  demo._insernal(){
+    print('11111ddddd');
+  }
+  static demo _instance;
+
+  static demo _getInstance(){
+    if(_instance==null) {
+        _instance=demo._insernal();
+      }
+    return _instance;
+  }
+
+
+  factory demo() =>_getInstance();
+
+}
+
+
+
 void main() {
-  go();
-  return;
+
+//  print(demo._getInstance());
+
+
+  demo d =new demo();
+
 }
 
-
-void go() {
-  var li = [1, 2, 3, 4, 5];
-  li.forEach((i) =>
-      print((i) {
-        return i * i;
-      }(i)));
-
-
-  li.forEach((i) =>
-      print((i) {
-
-      }));
-
-
-  var file = File(r"C:\Users\songjiabin1\Desktop\新建文本文档.txt");
-  Future<String> re = file.readAsString();
-  re.then((result) {
-    print(result);
-  });
-  print("我是第几?");
-
-
-  List abc = [];
-  abc.add('1');
-  abc.add('2');
-
-
-  abc.map((i) => i + "宋").forEach((f){
-    print(f);
-  });
-}
-
-
-class demo {
-  String name;
-
-  demo(this.name);
-}

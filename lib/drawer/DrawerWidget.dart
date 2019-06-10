@@ -47,6 +47,8 @@ import 'package:flutter_github/map/map.dart';
 import 'package:flutter_github/map/KeyWidget.dart';
 import 'package:flutter_github/crossplatform/FlutterGetDataForAndroid.dart';
 import 'package:flutter_github/crossplatform/AndroidGetDataForFlutter.dart';
+import 'package:flutter_github/login/GoodLogin.dart';
+import 'package:flutter_github/weather/LookWeather.dart';
 
 /**
  * 侧滑菜单
@@ -149,7 +151,8 @@ class DrawerWidgetState extends State<DrawerWidget> {
       this.map['美丽的电影海报Self'] = MoviePosterWidget();
       this.map['请求知乎接口的一个小例子'] = FutureBuilderPage();
       this.map['请求知乎接口的一个小例子2'] = ZhihuWidget2();
-
+      this.map['美丽的登录界面']=GoodLoginPage();
+      this.map['查看天气'] =LookWeather();
     } else if (this.widget.showType == ShowType.CrossPlatform) {
       //跨平台
       this.map['flutter调用android方法得到电量信息'] = CrossPlatforWidget();
