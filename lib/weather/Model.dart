@@ -146,6 +146,11 @@ class ThressDaysForeCase {
 }
 
 class DailyForecast {
+
+
+
+
+
   String cond_code_d;
   String cond_code_n;
   String cond_txt_d;
@@ -199,6 +204,7 @@ class DailyForecast {
       wind_spd: json['wind_spd'],
     );
   }
+
 
 
 }

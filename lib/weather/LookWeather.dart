@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_github/weather/dio_client.dart';
 import 'package:flutter_github/weather/Model.dart';
 import 'package:flutter_github/weather/SpClient.dart';
-import 'package:intl/date_symbol_data_local.dart';
+
 import 'package:flutter_github/weather/HomePage.dart';
+import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 /**
  * 查看天气
@@ -58,7 +60,9 @@ class LookWeatherState extends State<LookWeather> {
 
   //异步执行的列表，所有的异步方法执行顺序并不是很重要
   void getData() async {
-    Future.wait([SpClient.getInstance()]).then((v) async {
+    Future.wait(
+        [SpClient.getInstance(), initializeDateFormatting("zh_CN", null)])
+        .then((v) async {
       SpClient.sp.clear();
       if (SpClient.sp.getString('cid') == null) {
         //如果sp里面没有存数据 那么默认显示北京的
