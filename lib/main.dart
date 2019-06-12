@@ -15,9 +15,11 @@ import 'package:flutter_github/drawer/DrawerMainWidet.dart';
 import 'package:flutter_github/example_demo/bottom_navigation_widget.dart';
 
 import 'dart:convert';
-
+import 'package:flutter/rendering.dart';
 
 void main() {
+  //设置debugPaintSizeEnabled为true来更直观的调试布局问题
+  debugPaintSizeEnabled=false;
   runApp(getDrawerWidget());
 }
 

@@ -4,6 +4,8 @@ import 'package:intl/intl.dart';
 import 'package:flutter_github/weather/dio_client.dart';
 import 'package:flutter_github/weather/SpClient.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_github/weather/SearchPage.dart';
 
 /**
  * 展示天气数据
@@ -61,8 +63,7 @@ class HomePageWidgetState extends State<HomePageWidget> {
       body: Stack(
         children: <Widget>[
           new Container(
-            width: 1000,
-            height: 10000,
+
             decoration: BoxDecoration(
               //边框 展示一个渐变的颜色
               gradient: LinearGradient(
@@ -94,7 +95,7 @@ class HomePageWidgetState extends State<HomePageWidget> {
             child: SingleChildScrollView(
               physics: BouncingScrollPhysics(
                   parent: AlwaysScrollableScrollPhysics()),
-              child: Center(child: SizedBox(height: 1000.0)),
+              child: Center(child: SizedBox(height: 100.0)),
             ),
             onRefresh: _pullDownRefresh, color: Colors.black26,),
           Positioned(
@@ -331,7 +332,16 @@ class HomePageWidgetState extends State<HomePageWidget> {
           ListTile(
             title: Text('切换城市'),
             onTap: () {
-
+              //关闭弹出来的界面
+              Navigator.pop(context);
+              //跳转界面 右滑结束界面
+              Navigator.push(context, CupertinoPageRoute(builder: (_) {
+                return SearchPage();
+              })).then((result) {
+                if (result != null && this.mounted) {
+                  _updateWeather();
+                }
+              });
             },
           ),
           Divider(height: 0.0),

@@ -148,9 +148,6 @@ class ThressDaysForeCase {
 class DailyForecast {
 
 
-
-
-
   String cond_code_d;
   String cond_code_n;
   String cond_txt_d;
@@ -204,7 +201,77 @@ class DailyForecast {
       wind_spd: json['wind_spd'],
     );
   }
+}
 
+
+class City {
+  String status;
+  List<BasicOfCity> basic;
+
+  City({this.status, this.basic});
+
+
+  factory City.jsonToBean(Map<String, dynamic> json){
+    List list = json['basic'] as List;
+    List<BasicOfCity> listData = list.map((v) {
+      return BasicOfCity.jsonToBean(v);
+    }).toList();
+    return City(
+        status: json['status'],
+        basic: listData
+    );
+  }
 
 
 }
+
+
+class BasicOfCity {
+  String cid;
+  String location;
+  String parent_city;
+  String admin_area;
+  String cnty;
+  String lat;
+  String lon;
+  String tz;
+  String type;
+
+  BasicOfCity({this.cid, this.location, this.parent_city, this.admin_area,
+    this.cnty, this.lat, this.lon, this.tz, this.type});
+
+
+  factory BasicOfCity.jsonToBean(Map<String, dynamic>json){
+    return BasicOfCity(
+        cid: json['cid'],
+        location: json['location'],
+        parent_city: json['parent_city'],
+        admin_area: json['admin_area'],
+        cnty: json['cnty'],
+        lat: json['lat'],
+        lon: json['lon'],
+        tz: json['tz'],
+        type: json['type']
+    );
+  }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

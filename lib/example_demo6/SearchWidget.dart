@@ -14,16 +14,16 @@ class SearchWidgetState extends State<SearchWidget> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('SearchBarDemo'),
-        //右侧搜索的时候 用此
-        actions: <Widget>[
-          IconButton(icon: Icon(Icons.search), onPressed: () {
-            return showSearch(context: context, delegate: searchBarDelegate());
-          })
-        ],
-      )
-      ,
+        appBar: new AppBar(
+          title: new Text('SearchBarDemo'),
+          //右侧搜索的时候 用此
+          actions: <Widget>[
+            IconButton(icon: Icon(Icons.search), onPressed: () {
+              return showSearch(
+                  context: context, delegate: searchBarDelegate());
+            })
+          ],
+        )
     );
   }
 

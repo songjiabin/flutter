@@ -102,6 +102,36 @@ class DioClient {
       return null;
     }
   }
+
+
+  /**
+   * 搜索城市
+   */
+  Future<List<BasicOfCity>> getSearchCity(String keyWord) async {
+    try {
+      String url = 'https://search.heweather.net/find';
+      Response response = await Dio().get(
+          url,
+          options: options,
+          queryParameters: {
+            'location': keyWord,
+            'key': key,
+            'mode': '',
+            'number': 20
+          }
+      );
+
+      City city = City.jsonToBean(response.data['HeWeather6'].first);
+      if (city != null && city.status.contains('ok')) {
+        return city.basic;
+      } else {
+        return null;
+      }
+    } catch (e) {
+      print(e);
+      return null;
+    }
+  }
 }
 
 
