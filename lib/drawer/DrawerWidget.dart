@@ -49,6 +49,9 @@ import 'package:flutter_github/crossplatform/FlutterGetDataForAndroid.dart';
 import 'package:flutter_github/crossplatform/AndroidGetDataForFlutter.dart';
 import 'package:flutter_github/login/GoodLogin.dart';
 import 'package:flutter_github/weather/LookWeather.dart';
+import 'package:flutter_github/animation/hero/heroAnima.dart';
+import 'package:flutter_github/animation/hero/heroAnima_1.dart';
+
 
 /**
  * 侧滑菜单
@@ -125,6 +128,8 @@ class DrawerWidgetState extends State<DrawerWidget> {
       this.map['http'] = HttpDemoWidget();
       this.map['页面中map的使用'] = MapWidget();
       this.map['使用widget 的 标识属性 key'] = KeyWidget();
+      this.map['hero 动画']=HeroAnimationWidget();
+      this.map['hero 动画1']=HeroAnimaWidget_1();
     } else if (this.widget.showType == ShowType.SampleDemo) {
       this.map['底部导航栏'] = bottom_navigation_widget();
       this.map['底部导航栏（特殊样式）+ 自定义的page界面'] = bottomAppbar();

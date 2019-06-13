@@ -21,51 +21,6 @@ class AnimWidgetState extends State<AnimWidget>
   Animation _animation;
   Animation tween;
 
-  @override
-  Widget build(BuildContext context) {
-    InkWell inkWell = new InkWell(
-        onTap: () {
-          startAnimtaion();
-        },
-        child:
-//            getScaleWidget());
-        getTextWidget());
-
-    return inkWell;
-  }
-
-
-  startAnimtaion() {
-    setState(() {
-      controller.forward(from: 0.0);
-    });
-  }
-
-
-  /**
-   * 第一种动画方式
-   */
-  Widget getScaleWidget() {
-    return ScaleTransition(
-      scale: controller,
-      child: new Center(
-          child: FlutterLogo(size: 200,)
-      ),
-    );
-  }
-
-  /**
-   * 第二种动画方式
-   */
-  Widget getTextWidget() {
-    return new Center(
-        child: new Text(
-          "Flutter Animation(一)",
-          style: TextStyle(fontSize: 20 * _animation.value), //更改文本字体大小
-        )
-    );
-  }
-
 
   @override
   void initState() {
@@ -98,8 +53,55 @@ class AnimWidgetState extends State<AnimWidget>
     // controller.reverse();
 
     //调用forward开始动画
-    controller.forward();
+     controller.forward();
   }
+
+
+  @override
+  Widget build(BuildContext context) {
+    InkWell inkWell = new InkWell(
+        onTap: () {
+          startAnimtaion();
+        },
+        child:
+        getScaleWidget());
+//        getTextWidget());
+
+    return inkWell;
+  }
+
+
+  startAnimtaion() {
+    setState(() {
+      controller.forward(from: 0);
+    });
+  }
+
+
+  /**
+   * 第一种动画方式
+   */
+  Widget getScaleWidget() {
+    return ScaleTransition(
+      scale: controller,
+      child: new Center(
+          child: Text('逐渐放大')
+      ),
+    );
+  }
+
+  /**
+   * 第二种动画方式
+   */
+  Widget getTextWidget() {
+    return new Center(
+        child: new Text(
+          "Flutter Animation(一)",
+          style: TextStyle(fontSize: 20 * _animation.value), //更改文本字体大小
+        )
+    );
+  }
+
 
   @override
   void dispose() {
