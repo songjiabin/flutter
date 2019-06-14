@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Game.dart';
+import 'HeroDetailPage_1.dart';
 
 /**
  * hero   动画  飞行动画 demo
@@ -10,9 +11,9 @@ class HeroAnimaWidget_1 extends StatefulWidget {
 }
 
 class HeroAnimaWidgetState extends State<HeroAnimaWidget_1>
-    with SingleTickerProviderStateMixin {
-  AnimationController controller;
-  Animation _animation;
+    with TickerProviderStateMixin {
+
+
   final List<Game> _games = [
     Game('本周新游推荐', '编辑最爱', '点击了解这款游戏', 'images/Zelda.png', """游戏简介
     
@@ -152,13 +153,22 @@ RTS RPG与SLG结合的创新玩法，精致写实的画风，逼真的军事装�
 
 
   Widget _getListViewItem(Game game) {
+    AnimationController animationController = new AnimationController(
+        vsync: this,
+        duration: Duration(milliseconds: 200)
+    );
+
+    var animator = Tween<double>(begin: 1, end: 0.9).animate(
+        animationController);
+
+
     var contaniner = new Container(
         height: 450,
         margin: EdgeInsets.symmetric(vertical: 10),
         child:
         //缩放的动画
         ScaleTransition(
-          scale: controller,
+          scale: animator,
           child:
           Hero(tag: 'hero${game.title}',
               child:
@@ -176,29 +186,34 @@ RTS RPG与SLG结合的创新玩法，精致写实的画风，逼真的军事装�
                     ),
                     constraints: new BoxConstraints.expand(),
                   )
-
                 ],
               )
           ),
         )
     );
 
+
     var content = GestureDetector(
       child: contaniner,
       onTap: () {
         //单机事件
-
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+          return HerodetailPage();
+        },
+            fullscreenDialog: true,
+            settings: RouteSettings(arguments: game)
+        ));
       },
       onPanDown: (v) {
         //手按下的时候
         print('onPanDown');
-        controller.forward();
+        animationController.forward();
       },
 
       onPanCancel: () {
         //手离开的时候
         print('onPanCancel');
-        controller..reverse();
+        animationController..reverse();
       },
 
     );
@@ -206,25 +221,5 @@ RTS RPG与SLG结合的创新玩法，精致写实的画风，逼真的军事装�
     return content;
   }
 
-
-  @override
-  void initState() {
-    super.initState();
-    controller = AnimationController(
-      // 提供 vsync 最简单的方式，就是直接继承 SingleTickerProviderStateMixin
-      vsync: this,
-      //持续时长
-      duration: Duration(milliseconds: 200),
-    );
-    //补间动画 设置从 0 开始到 1.0
-    _animation = Tween(begin: 1, end: 0.5).animate(controller);
-     controller.forward();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    controller.dispose();
-  }
 
 }

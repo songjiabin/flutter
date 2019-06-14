@@ -51,7 +51,7 @@ import 'package:flutter_github/login/GoodLogin.dart';
 import 'package:flutter_github/weather/LookWeather.dart';
 import 'package:flutter_github/animation/hero/heroAnima.dart';
 import 'package:flutter_github/animation/hero/heroAnima_1.dart';
-
+import 'package:flutter_github/io/FileManger.dart' as fileManager;
 
 /**
  * 侧滑菜单
@@ -158,6 +158,7 @@ class DrawerWidgetState extends State<DrawerWidget> {
       this.map['请求知乎接口的一个小例子2'] = ZhihuWidget2();
       this.map['美丽的登录界面']=GoodLoginPage();
       this.map['查看天气'] =LookWeather();
+      this.map['文件管理器']=fileManager.FileManager();
     } else if (this.widget.showType == ShowType.CrossPlatform) {
       //跨平台
       this.map['flutter调用android方法得到电量信息'] = CrossPlatforWidget();
