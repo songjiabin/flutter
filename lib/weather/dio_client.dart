@@ -43,7 +43,8 @@ class DioClient {
           options: options,
           queryParameters: {
             'location': location,
-            'key': key});
+            'key': key}
+            );
 
       RealTimeWeather realTimeWeather = RealTimeWeather.jsonToBean(
           response.data['HeWeather6'][0]);

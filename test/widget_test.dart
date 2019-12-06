@@ -4,36 +4,20 @@
 // utility that Flutter provides. For example, you can send tap and scroll
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
-import 'dart:io';
 
-class demo{
-
-  //构造方法
-  demo._insernal(){
-    print('11111ddddd');
-  }
-  static demo _instance;
-
-  static demo _getInstance(){
-    if(_instance==null) {
-        _instance=demo._insernal();
-      }
-    return _instance;
-  }
-
-
-  factory demo() =>_getInstance();
-
-}
-
-
+import 'package:date_format/date_format.dart';
+import 'package:flutter_github/cupertino_date_picker/lib/date_picker.dart';
 
 void main() {
+  var now = DateTime.now();
 
-//  print(demo._getInstance());
+  DateTime dateTime = now.subtract(new Duration(days: 1));
+  print("---------->" + formatDate(dateTime, [yyyy, '-', mm, '-', dd]));
 
+  String date = "2019-12-06";
+  String date2 = "2019-12-05";
 
-  demo d =new demo();
+   var iss = DateTime.parse(date).isBefore(DateTime.parse(date2));
 
+  print("---------->" +iss.toString());
 }
-

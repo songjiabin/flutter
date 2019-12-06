@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_github/drawer/DrawerWidget.dart';
+import 'package:flutter_github/provide/Counter.dart';
 import 'dart:math';
 
+import 'package:provider/provider.dart';
 
 /**
  * 导航界面
  */
 class DrawerMainWidget extends StatelessWidget {
-
-
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -19,14 +19,13 @@ class DrawerMainWidget extends StatelessWidget {
     );
   }
 
-
   getGridViewTwo(BuildContext context) {
     return new GridView(
       /**
        * 1、SliverGridDelegateWithMaxCrossAxisExtent 根据里面内容多大进行扩展的
        */
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        //每一行显示多少列
+          //每一行显示多少列
           crossAxisCount: 2,
           //横轴的距离
           crossAxisSpacing: 10,
@@ -46,6 +45,9 @@ class DrawerMainWidget extends StatelessWidget {
         }),
         MyText('跨平台', () {
           pushPage(context, DrawerWidget(ShowType.CrossPlatform));
+        }),
+        MyText('状态管理', () {
+          pushPage(context, DrawerWidget(ShowType.StatusManagement));
         })
       ],
       padding: new EdgeInsets.all(4),
@@ -58,15 +60,15 @@ class DrawerMainWidget extends StatelessWidget {
   void pushPage(BuildContext context, Widget widget) {
     //处理跳转的逻辑
     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
-      return widget;
+      return ChangeNotifierProvider(
+        builder: (_) => Counter(),
+        child: widget,
+      );
     }));
   }
-
-
 }
 
 class MyText extends StatelessWidget {
-
   final String text;
   final onItemClickListeners _clickListeners;
 
@@ -76,15 +78,13 @@ class MyText extends StatelessWidget {
       alignment: Alignment.center,
       // 盒子样式
       decoration: new BoxDecoration(
-        color: Color.fromARGB(
-            255, Random().nextInt(256) + 0, Random().nextInt(256) + 0,
-            Random().nextInt(256) + 0),
+        color: Color.fromARGB(255, Random().nextInt(256) + 0,
+            Random().nextInt(256) + 0, Random().nextInt(256) + 0),
         //设置Border属性给容器添加边框
         border: new Border.all(
           //为边框添加颜色
-          color: Color.fromARGB(
-              255, Random().nextInt(256) + 0, Random().nextInt(256) + 0,
-              Random().nextInt(256) + 0),
+          color: Color.fromARGB(255, Random().nextInt(256) + 0,
+              Random().nextInt(256) + 0, Random().nextInt(256) + 0),
           width: 1.0, //边框宽度
         ),
       ),
@@ -102,25 +102,16 @@ class MyText extends StatelessWidget {
     return inkWell;
   }
 
-
   MyText(this.text, this._clickListeners);
 
   //得到随机颜色
   Color randomColor() {
-    return Color.fromARGB(
-        255, Random().nextInt(256) + 0, Random().nextInt(256) + 0,
-        Random().nextInt(256) + 0);
+    return Color.fromARGB(255, Random().nextInt(256) + 0,
+        Random().nextInt(256) + 0, Random().nextInt(256) + 0);
   }
-
 }
-
 
 /**
  * 定义一个接口  回调方法
  */
 typedef onItemClickListeners = void Function();
-
-
-
-
-

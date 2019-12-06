@@ -4,32 +4,32 @@ import 'package:flutter/material.dart';
  *
  * 一个好看的登录界面
  */
-class  GoodLoginPage extends StatefulWidget {
+class GoodLoginPage extends StatefulWidget {
   @override
-   GoodLoginPageState createState() => new  GoodLoginPageState();
+  GoodLoginPageState createState() => new GoodLoginPageState();
 }
 
-class  GoodLoginPageState extends State< GoodLoginPage> {
+class GoodLoginPageState extends State<GoodLoginPage> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-       body: buildSignInTextForm(),
+      body: buildSignInTextForm(),
     );
   }
+
   @override
   void initState() {
-     super.initState();
+    super.initState();
   }
-  
-  
-  
-  Widget buildSignInTextForm(){
+
+
+  Widget buildSignInTextForm() {
     return new Container(
       //宽度
       width: 300,
       height: 190,
       // 盒子样式
-      decoration:  new BoxDecoration(
+      decoration: new BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(8))
           , color: Colors.white
       ),
@@ -38,6 +38,4 @@ class  GoodLoginPageState extends State< GoodLoginPage> {
       ),
     );
   }
-  
-
 }

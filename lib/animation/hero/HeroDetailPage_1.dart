@@ -28,6 +28,8 @@ class HerodetailPage extends StatelessWidget {
                       height: 500,
                       fit: BoxFit.cover,
                     )
+
+
                 ),
               ),
             ],

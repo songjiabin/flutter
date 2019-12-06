@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_github/cupertino_date_picker/CupertinoDatePicker.dart';
+import 'package:flutter_github/dioclient/DioClientWidget.dart';
 import 'package:flutter_github/drawer/DrawerItemWidget.dart';
+import 'package:flutter_github/dropdownmenu/DropdownButton.dart';
+import 'package:flutter_github/dropdownmenu/DropdownMenuWidget.dart';
 import 'package:flutter_github/main.dart';
 import 'package:flutter_github/instance_demo/MyListViewDemo.dart'
-as MyListViewDemo;
+    as MyListViewDemo;
 import 'package:flutter_github/instance_demo/MySelfDemo.dart' as MyselfDemo;
-import 'package:flutter_github/echo_demo/MessageListScreen.dart' as MessageListScreen;
+import 'package:flutter_github/echo_demo/MessageListScreen.dart'
+    as MessageListScreen;
 import 'package:flutter_github/example_demo/bottom_navigation_widget.dart';
+import 'package:flutter_github/example_demo/mydemo.dart';
 import 'package:flutter_github/example_demo2/bottom_appbar.dart';
 import 'package:flutter_github/example_demo3/pages.dart' as FirstWidgets;
 import 'package:flutter_github/example_demo4/FrostedGlass.dart';
@@ -41,6 +47,9 @@ import 'package:flutter_github/parsejson/ParseJsonWidget8.dart';
 import 'package:flutter_github/github/movie_details_page.dart';
 import 'package:flutter_github/github/movie_api.dart';
 import 'package:flutter_github/github_demo/MoviePosterWidget.dart';
+import 'package:flutter_github/provide/LookProvideWidget.dart';
+import 'package:flutter_github/provide/ProvideWidget.dart';
+import 'package:flutter_github/time_select_widget/TimeSelectWidget.dart';
 import 'package:flutter_github/zhihu/ZhiHuWidget.dart';
 import 'package:flutter_github/zhihu/ZhiHuWidget2.dart';
 import 'package:flutter_github/map/map.dart';
@@ -52,14 +61,13 @@ import 'package:flutter_github/weather/LookWeather.dart';
 import 'package:flutter_github/animation/hero/heroAnima.dart';
 import 'package:flutter_github/animation/hero/heroAnima_1.dart';
 import 'package:flutter_github/io/FileManger.dart' as fileManager;
+import 'package:flutter_github/bloc/BlockWidget.dart';
 
 /**
  * 侧滑菜单
  */
 class DrawerWidget extends StatefulWidget {
-
   final ShowType showType;
-
 
   @override
   DrawerWidgetState createState() => new DrawerWidgetState();
@@ -68,24 +76,24 @@ class DrawerWidget extends StatefulWidget {
 }
 
 class DrawerWidgetState extends State<DrawerWidget> {
-
   String title;
   Map<String, Widget> map = Map();
   final List<String> drawerList = [];
 
-
   @override
   void initState() {
     super.initState();
+
+
     initMapData();
     this.title = drawerList[0];
   }
-
 
   /**
    * 初始化数据
    */
   void initMapData() {
+
     if (this.widget.showType == ShowType.SampleWidget) {
       this.map['hello world'] = HelloWorldApp();
       this.map['Container模块'] = ContainerApp();
@@ -93,7 +101,7 @@ class DrawerWidgetState extends State<DrawerWidget> {
       this.map['listView 列表 纵向'] = ListViewApp();
       this.map['横线的ListView'] = ListViewHorizontalApp();
       this.map['动态的listView'] =
-      new DynamicListViewApp(item: List.generate(100, (i) => 'item-->$i'));
+          new DynamicListViewApp(item: List.generate(100, (i) => 'item-->$i'));
       this.map['网格列表'] = GridViewApp();
       this.map['水平布局'] = LevelLayoutWidget();
       this.map['垂直布局'] = VerticalLayoutWidget();
@@ -105,8 +113,9 @@ class DrawerWidgetState extends State<DrawerWidget> {
       this.map['导航参数的传递和接收'] = IntentWidget();
       this.map['界面跳转并返回'] = returnDataWidget();
       this.map['本地图片'] = locationImage();
-      this.map['打包'] = new Center(child: Text(
-          '详见https://jjmima.top/2019/04/26/Flutter%20%E6%89%93%E5%8C%85/#more'));
+      this.map['打包'] = new Center(
+          child: Text(
+              '详见https://jjmima.top/2019/04/26/Flutter%20%E6%89%93%E5%8C%85/#more'));
       this.map['常用的button'] = sampleButton();
       this.map['文本输入框'] = MessageForm();
       this.map['显示弹框'] = new MaterialApp(home: DialogWidget());
@@ -128,8 +137,14 @@ class DrawerWidgetState extends State<DrawerWidget> {
       this.map['http'] = HttpDemoWidget();
       this.map['页面中map的使用'] = MapWidget();
       this.map['使用widget 的 标识属性 key'] = KeyWidget();
-      this.map['hero 动画']=HeroAnimationWidget();
-      this.map['hero 动画1']=HeroAnimaWidget_1();
+      this.map['hero 动画'] = HeroAnimationWidget();
+      this.map['hero 动画1'] = HeroAnimaWidget_1();
+      this.map['状态管理框架_Bloc'] = BlockWidght();
+      this.map['demo小例子'] = MyDemoWidget();
+      this.map['下拉菜单'] = GZXDropDownMenuTestPage();
+      this.map['自带下拉菜单'] = LearnDropdownButton();
+      this.map['Flutter Cupertino Date Picker'] = TimePickerPage();
+      this.map['时间筛选控件'] = TimeSelectWidget();
     } else if (this.widget.showType == ShowType.SampleDemo) {
       this.map['底部导航栏'] = bottom_navigation_widget();
       this.map['底部导航栏（特殊样式）+ 自定义的page界面'] = bottomAppbar();
@@ -148,6 +163,7 @@ class DrawerWidgetState extends State<DrawerWidget> {
       this.map['滑动拖动控件'] = DargTargetWidget();
       this.map['实现一个listView的小Demo'] = MyListViewDemo.MyListViewDemo();
       this.map['静态界面'] = MyselfDemo.MySelfDemoWidget();
+      this.map['模拟网络请求']=DioClientWidget();
     } else if (this.widget.showType == ShowType.SampleProject) {
       this.map['实现一个echo客户端'] = MessageListScreen.MessageListScreen();
       this.map['登录'] = LoginWidget();
@@ -156,21 +172,22 @@ class DrawerWidgetState extends State<DrawerWidget> {
       this.map['美丽的电影海报Self'] = MoviePosterWidget();
       this.map['请求知乎接口的一个小例子'] = FutureBuilderPage();
       this.map['请求知乎接口的一个小例子2'] = ZhihuWidget2();
-      this.map['美丽的登录界面']=GoodLoginPage();
-      this.map['查看天气'] =LookWeather();
-      this.map['文件管理器']=fileManager.FileManager();
+      this.map['美丽的登录界面'] = GoodLoginPage();
+      this.map['查看天气'] = LookWeather();
+      this.map['文件管理器'] = fileManager.FileManager();
     } else if (this.widget.showType == ShowType.CrossPlatform) {
       //跨平台
       this.map['flutter调用android方法得到电量信息'] = CrossPlatforWidget();
-      this.map['android调用flutter方法得到数据']=AndroidGetDataForFlutter();
+      this.map['android调用flutter方法得到数据'] = AndroidGetDataForFlutter();
+    } else if (this.widget.showType == ShowType.StatusManagement) {
+      this.map['provider'] = ProvideWidget();
+      this.map['查看provider状态'] = LookProvideWidget();
     }
-
 
     map.forEach((key, value) {
       drawerList.add(key);
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -182,29 +199,26 @@ class DrawerWidgetState extends State<DrawerWidget> {
           //创建不同类型的ListView
           child: ListView.separated(
               itemBuilder: (BuildContext context, int index) {
-                var drawerItemWidget = DrawerItemWidget(
-                    this.drawerList[index], index, (position) {
+                var drawerItemWidget =
+                    DrawerItemWidget(this.drawerList[index], index, (position) {
                   setState(() {
                     title = this.drawerList[position];
                   });
                 });
                 return drawerItemWidget;
               },
-
               itemCount: this.drawerList.length,
               //可用于显示分割线
               separatorBuilder: (content, index) {
-                return Divider(height: 1.0, color: Colors.orange,);
-              }
-          ),
-
+                return Divider(
+                  height: 1.0,
+                  color: Colors.orange,
+                );
+              }),
         ),
-        body:
-        this.map[title]
-    );
+        body: this.map[title]);
   }
 }
-
 
 enum ShowType {
   //常见控件
@@ -214,14 +228,7 @@ enum ShowType {
   //小实例
   SampleProject,
   //跨平台
-  CrossPlatform
+  CrossPlatform,
+  //状态管理
+  StatusManagement,
 }
-
-
-
-
-
-
-
-
-
